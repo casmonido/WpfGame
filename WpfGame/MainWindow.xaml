@@ -5,8 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="The royal game of Ur" Height="450" Width="800" x:Name="ParentWindow">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_Game">
+                <MenuItem Header="_New" />
+                <MenuItem Header="_Open" Click="_Open" />
+                <MenuItem Header="_Save" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+        </Menu>
+        <Canvas Margin="0" Background="LightSeaGreen">
+            <UniformGrid Rows="3" Columns="5" Margin="100">
+                <Image Source="square1.png" Stretch="Uniform" Width="100" Height="100" Name="square"/>
+                <Image Source="square1.png" Stretch="Uniform" Width="100"/>
+                <Label Content="2nd" Background="Moccasin"/>
+                <Label Content="3rd" Background="DarkSeaGreen"/>
+                <Label Content="4th" Background="Violet" />
+                <Label Content="5th" Background="Pink" />
+                <Label Content="3rd" Background="DarkSeaGreen"/>
+                <Label Content="4th" Background="Violet" />
+                <Label Content="5th" Background="Pink" />
+                <Label Content="3rd" Background="DarkSeaGreen"/>
+                <Label Content="4th" Background="Violet" />
+                <Label Content="5th" Background="Pink" />
+                <Label Content="3rd" Background="DarkSeaGreen"/>
+                <Label Content="4th" Background="Violet" />
+                <Label Content="5th" Background="Pink" />
+            </UniformGrid>
+
+                <Ellipse
+            Name="mymy"
+            Width="100"
+            Height="50"
+            Fill="Blue"
+            Stroke="Black"
+            StrokeThickness="4"
+            Canvas.Left="10"
+            Canvas.Top="100">
+            <Ellipse.Triggers>
+                <!-- Animates opacity. -->
+                <EventTrigger RoutedEvent="Ellipse.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                            Storyboard.TargetName="mymy" 
+                            Storyboard.TargetProperty="Opacity"
+                            From="1.0" To="0.0" Duration="0:0:5" 
+                            AutoReverse="True" RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+
+
+            <Ellipse
+            Width="50"
+            Height="50"
+            Fill="Blue"
+            Canvas.Left="135"
+            Canvas.Top="25"/>
+        </Canvas>
+    </DockPanel>
 </Window>

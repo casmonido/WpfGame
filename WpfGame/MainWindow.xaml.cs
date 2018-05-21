@@ -23,6 +23,31 @@ namespace WpfGame
         public MainWindow()
         {
             InitializeComponent();
+
+            Square square = new Square();
+            square.CircleList = new List<Piece>() { new Piece(25) };
+            _shapes.Add(square);
+        }
+
+        private List<Square> _shapes = new List<Square>();
+
+        public List<Square> Shapes
+        {
+            get { return _shapes; }
+        }
+
+        public void _Open(object sender, RoutedEventArgs e)
+        {
+            string messageBoxText = "Do you want to save changes?";
+            string caption = "Word Processor";
+            MessageBoxButton button = MessageBoxButton.YesNoCancel;
+            MessageBoxImage icon = MessageBoxImage.Warning;
+            MessageBox.Show(messageBoxText, caption, button, icon);
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
