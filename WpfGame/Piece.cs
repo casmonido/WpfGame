@@ -14,16 +14,14 @@ namespace WpfGame
     {
         public double X { get; set; }
         public double Y { get; set; }
-        public double Width { get; set; }
-        public double Height { get; set; }
+        public static double Width { get; } = 50;
+        public static double Height { get; } = 50;
         public String Color { get; set; }
 
         public Piece(double x, double y, String color)
         {
             X = x;
             Y = y;
-            Width = 100;
-            Height = 100;
             Color = color;
         }
     }

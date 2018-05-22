@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static WpfGame.Square;
 
 namespace WpfGame
 {
@@ -22,31 +23,30 @@ namespace WpfGame
     public partial class MainWindow : Window
     {
         public static int NUM_PIECES = 7;
-        private ObservableCollection<Piece> items;
+        public static int BOARD_LEN = 8;
+        private ObservableCollection<Piece> _pieces = new ObservableCollection<Piece>();
+        private ObservableCollection<Square> _board = new ObservableCollection<Square>();
 
         public MainWindow()
         {
             InitializeComponent();
 
-            Square square = new Square();
-            //square.CircleList = new List<Piece>() { new Piece() };
-            
-            _shapes.Add(square);
-            
-            items = new ObservableCollection<Piece>();
+            for (int i = 0; i < BOARD_LEN; i++)
+                _board.Add(new Square(new TempData(i, 0, i % 2 == 0 ? "Black" : "White")));
+            for (int i = 0; i < BOARD_LEN; i++)
+                _board.Add(new Square(new TempData(i, 1, i % 2 == 0 ? "White" : "Black")));
+            board.ItemsSource = _board;
+
             for (int i=0; i < NUM_PIECES; i++)
-                items.Add(new Piece(100*i, 50, i%2==0?"Black":"White"));
+                _pieces.Add(new Piece(25 + 100*i, 25, "Blue"));
             ViewModel vm = new ViewModel();
-            vm.items = items;
+            vm.items = _pieces;
             pieces.ItemsSource = vm.items;
         }
 
-        private List<Square> _shapes = new List<Square>();
+        
 
-        public List<Square> Shapes
-        {
-            get { return _shapes; }
-        }
+
 
         public void _Open(object sender, RoutedEventArgs e)
         {

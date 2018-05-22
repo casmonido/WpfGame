@@ -17,25 +17,8 @@
             </MenuItem>
         </Menu>
         <Canvas Margin="0" Background="LightSeaGreen">
-            <UniformGrid Rows="3" Columns="5" Margin="100">
-                <Image Source="square1.png" Stretch="UniformToFill" Width="100" Height="100" Name="square"/>
-                <Image Source="square1.png" Stretch="Fill" Width="100"/>
-                <Label Content="2nd" Background="Moccasin"/>
-                <Label Content="3rd" Background="DarkSeaGreen"/>
-                <Label Content="4th" Background="Violet" />
-                <Label Content="5th" Background="Pink" />
-                <Label Content="3rd" Background="DarkSeaGreen"/>
-                <Label Content="4th" Background="Violet" />
-                <Label Content="5th" Background="Pink" />
-                <Label Content="3rd" Background="DarkSeaGreen"/>
-                <Label Content="4th" Background="Violet" />
-                <Label Content="5th" Background="Pink" />
-                <Label Content="3rd" Background="DarkSeaGreen"/>
-                <Label Content="4th" Background="Violet" />
-                <Label Content="5th" Background="Pink" />
-            </UniformGrid>
 
-                <Ellipse
+            <Ellipse
             Name="mymy"
             Width="100"
             Height="50"
@@ -61,12 +44,24 @@
         </Ellipse>
 
 
-            <Ellipse
-            Width="50"
-            Height="50"
-            Fill="Blue"
-            Canvas.Left="300"
-            Canvas.Top="25"/>
+            <ItemsControl x:Name="board" >
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Rectangle Width="{Binding Width}" Height="{Binding Height}" Fill="{Binding Color}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
 
             <ItemsControl x:Name="pieces" >
@@ -83,7 +78,7 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Rectangle Width="{Binding Width}" Height="{Binding Height}" Fill="{Binding Color}"/>
+                        <Ellipse Width="{Binding Width}" Height="{Binding Height}" Fill="{Binding Color}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
