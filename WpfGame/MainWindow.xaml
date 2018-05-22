@@ -78,7 +78,16 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Ellipse Width="{Binding Width}" Height="{Binding Height}" Fill="{Binding Color}"/>
+                        <Ellipse  Width="{Binding Width}" Height="{Binding Height}" 
+                                  Fill="{Binding Color}">
+                            <Ellipse.InputBindings>
+                                <MouseBinding 
+                    Gesture="LeftClick"
+                    Command="{Binding MoveOnClick}"/>
+                                    
+                            </Ellipse.InputBindings>
+                        </Ellipse>
+
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
