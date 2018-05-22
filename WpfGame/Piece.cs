@@ -12,10 +12,49 @@ using System.Windows.Shapes;
 
 namespace WpfGame
 {
-    public class Piece
+    public class Piece: INotifyPropertyChanged
     {
-        public double X { get; set; }
-        public double Y { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        private double x;
+        public double X
+        {
+            get
+            {
+                return this.x;
+            }
+            set
+            {
+                if (value != this.x)
+                {
+                    this.x = value;
+                    NotifyPropertyChanged("X");
+                }
+            }
+        }
+        private double y;
+        public double Y
+        {
+            get
+            {
+                return this.y;
+            }
+            set
+            {
+                if (value != this.y)
+                {
+                    this.y = value;
+                    NotifyPropertyChanged("Y");
+                }
+            }
+        }
         public static double Width { get; } = 50;
         public static double Height { get; } = 50;
         public String Color { get; set; }

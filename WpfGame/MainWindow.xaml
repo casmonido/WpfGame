@@ -78,7 +78,7 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Ellipse  Width="{Binding Width}" Height="{Binding Height}" 
+                        <Ellipse Canvas.Left="{Binding Path=X, Mode=TwoWay}" Canvas.Top="{Binding Y}" Width="{Binding Width}" Height="{Binding Height}" 
                                   Fill="{Binding Color}">
                             <Ellipse.InputBindings>
                                 <MouseBinding 
