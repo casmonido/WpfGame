@@ -21,6 +21,7 @@ namespace WpfGame
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static int NUM_PIECES = 7;
         private ObservableCollection<Piece> items;
 
         public MainWindow()
@@ -33,10 +34,11 @@ namespace WpfGame
             _shapes.Add(square);
             
             items = new ObservableCollection<Piece>();
-            items.Add(new Piece());
+            for (int i=0; i < NUM_PIECES; i++)
+                items.Add(new Piece(100*i, 50, i%2==0?"Black":"White"));
             ViewModel vm = new ViewModel();
             vm.items = items;
-            shapesView.ItemsSource = vm.items;
+            pieces.ItemsSource = vm.items;
         }
 
         private List<Square> _shapes = new List<Square>();

@@ -16,28 +16,15 @@ namespace WpfGame
         public double Y { get; set; }
         public double Width { get; set; }
         public double Height { get; set; }
+        public String Color { get; set; }
 
-        public Piece()
+        public Piece(double x, double y, String color)
         {
-            X = 45;
-            Y = 100;
-            Width = 50;
-            Height = 50;
+            X = x;
+            Y = y;
+            Width = 100;
+            Height = 100;
+            Color = color;
         }
-        /*
-        public Ellipse ellipse;
-
-
-
-       public static readonly DependencyProperty XProperty =
-            DependencyProperty.Register("X", typeof(int), typeof(Piece),
-            new FrameworkPropertyMetadata(0));
-
-        public int X
-        {
-            get { return (int) ellipse.GetValue(XProperty); }
-            set { ellipse.SetValue(XProperty, value); }
-        }
-        */
     }
 }

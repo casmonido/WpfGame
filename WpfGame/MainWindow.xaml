@@ -69,7 +69,7 @@
             Canvas.Top="25"/>
 
 
-            <ItemsControl x:Name="shapesView" >
+            <ItemsControl x:Name="pieces" >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Canvas/>
@@ -83,7 +83,7 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Rectangle Width="{Binding Width}" Height="{Binding Height}" Fill="Black"/>
+                        <Rectangle Width="{Binding Width}" Height="{Binding Height}" Fill="{Binding Color}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
