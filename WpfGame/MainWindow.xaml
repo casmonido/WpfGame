@@ -18,8 +18,8 @@
         </Menu>
         <Canvas Margin="0" Background="LightSeaGreen">
             <UniformGrid Rows="3" Columns="5" Margin="100">
-                <Image Source="square1.png" Stretch="Uniform" Width="100" Height="100" Name="square"/>
-                <Image Source="square1.png" Stretch="Uniform" Width="100"/>
+                <Image Source="square1.png" Stretch="UniformToFill" Width="100" Height="100" Name="square"/>
+                <Image Source="square1.png" Stretch="Fill" Width="100"/>
                 <Label Content="2nd" Background="Moccasin"/>
                 <Label Content="3rd" Background="DarkSeaGreen"/>
                 <Label Content="4th" Background="Violet" />
@@ -65,8 +65,28 @@
             Width="50"
             Height="50"
             Fill="Blue"
-            Canvas.Left="135"
+            Canvas.Left="300"
             Canvas.Top="25"/>
+
+
+            <ItemsControl x:Name="shapesView" >
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Rectangle Width="{Binding Width}" Height="{Binding Height}" Fill="Black"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Canvas>
     </DockPanel>
 </Window>

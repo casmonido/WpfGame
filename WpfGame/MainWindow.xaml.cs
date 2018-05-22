@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,13 +21,22 @@ namespace WpfGame
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ObservableCollection<Piece> items;
+
         public MainWindow()
         {
             InitializeComponent();
 
             Square square = new Square();
-            square.CircleList = new List<Piece>() { new Piece(25) };
+            //square.CircleList = new List<Piece>() { new Piece() };
+            
             _shapes.Add(square);
+            
+            items = new ObservableCollection<Piece>();
+            items.Add(new Piece());
+            ViewModel vm = new ViewModel();
+            vm.items = items;
+            shapesView.ItemsSource = vm.items;
         }
 
         private List<Square> _shapes = new List<Square>();
