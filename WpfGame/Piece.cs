@@ -23,11 +23,19 @@ namespace WpfGame
         private bool wholePathCrossed = false;
         public Whose Owner { get; private set; }
         public Square Location { get; private set; }
+        private Board board;
 
-        public Piece(Whose o, Square l)
+        public Piece(Whose o, Board b)
         {
             Owner = o;
-            Location = l;
+            Location = b.getNextLocation(o, pathCrossed);
+            board = b;
+        }
+
+        public void move(int howMuch)
+        {
+            pathCrossed += howMuch;
+            Location = board.getNextLocation(Owner, pathCrossed);
         }
     }
 }

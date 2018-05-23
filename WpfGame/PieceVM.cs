@@ -67,8 +67,9 @@ namespace WpfGame
             Y = p.Location.Y * MainWindow.UNIT + MainWindow.UNIT / 4;
             Color = model.Owner==Whose.computers?"Black":"White";
             Action<object> messageTarget = delegate (object s) {
-                this.X += 50;
-                this.Y += 50;
+                model.move(1);
+                X = p.Location.X * MainWindow.UNIT + MainWindow.UNIT / 4;
+                Y = p.Location.Y * MainWindow.UNIT + MainWindow.UNIT / 4; //lepiej chyba kolejnym databindingiem na location 
             };
             MoveOnClick = new MovePieceCommand(messageTarget);
         }
