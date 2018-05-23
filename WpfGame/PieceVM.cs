@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 
 namespace WpfGame
 {
-    class PieceVM : INotifyPropertyChanged
+    public class PieceVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName = "")

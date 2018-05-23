@@ -25,22 +25,14 @@ namespace WpfGame
     {
         public static int UNIT = 100;
         public static int NUM_PIECES = 7;
-        private ObservableCollection<Piece> piecesModel = new ObservableCollection<Piece>();
-        private ObservableCollection<PieceVM> _pieces = new ObservableCollection<PieceVM>();
 
-        public MainWindow()
+        public MainWindow(ObservableCollection<PieceVM> _pieces, BoardVM boardVM)
         {
             InitializeComponent();
 
-            Board boardModel = new Board();
-            BoardVM boardVM = new BoardVM(boardModel);
-            board.ItemsSource = boardVM._board;
-
-            for (int i=0; i < NUM_PIECES; i++)
-                piecesModel.Add(new Piece(Whose.players, boardModel));
-            for (int i = 0; i < piecesModel.Count; i++)
-                _pieces.Add(new PieceVM(piecesModel[i]));
+            
             pieces.ItemsSource = _pieces;
+            board.ItemsSource = boardVM._board;
         }
 
 

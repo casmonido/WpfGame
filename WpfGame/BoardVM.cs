@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WpfGame
 {
-    class BoardVM
+    public class BoardVM
     {
         private Board model;
         public ObservableCollection<SquareVM> _board = new ObservableCollection<SquareVM>();
