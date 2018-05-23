@@ -23,26 +23,31 @@ namespace WpfGame
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static int UNIT = 100;
         public static int NUM_PIECES = 7;
         public static int BOARD_LEN = 8;
-        private ObservableCollection<Piece> _pieces = new ObservableCollection<Piece>();
-        private ObservableCollection<Square> _board = new ObservableCollection<Square>();
+        public static int BOARD_HEIGHT = 3;
+        private ObservableCollection<Piece> piecesModel = new ObservableCollection<Piece>();
+        private ObservableCollection<Square> boardModel = new ObservableCollection<Square>();
+        private ObservableCollection<PieceVM> _pieces = new ObservableCollection<PieceVM>();
+        private ObservableCollection<SquareVM> _board = new ObservableCollection<SquareVM>();
 
         public MainWindow()
         {
             InitializeComponent();
-
-            for (int i = 0; i < BOARD_LEN; i++)
-                _board.Add(new Square(new TempData(i, 0, i % 2 == 0 ? "Black" : "White")));
-            for (int i = 0; i < BOARD_LEN; i++)
-                _board.Add(new Square(new TempData(i, 1, i % 2 == 0 ? "White" : "Black")));
+            
+            for (int j=0; j < BOARD_HEIGHT; j++) 
+                for (int i = 0; i < BOARD_LEN; i++)
+                    boardModel.Add(new Square(i, j, (i+j)%2==0?"White":"Black"));
+            for (int i = 0; i < boardModel.Count; i++)
+                _board.Add(new SquareVM(boardModel[i]));
             board.ItemsSource = _board;
 
             for (int i=0; i < NUM_PIECES; i++)
-                _pieces.Add(new Piece(25 + 100*i, 25, "Blue"));
-            ViewModel vm = new ViewModel();
-            vm.items = _pieces;
-            pieces.ItemsSource = vm.items;
+                piecesModel.Add(new Piece(Whose.players, boardModel[i]));
+            for (int i = 0; i < piecesModel.Count; i++)
+                _pieces.Add(new PieceVM(piecesModel[i]));
+            pieces.ItemsSource = _pieces;
         }
 
 
@@ -50,7 +55,7 @@ namespace WpfGame
         public void _Open(object sender, RoutedEventArgs e)
         {
             string messageBoxText = "Do you want to save changes?";
-            string caption = "Word Processor";
+            string caption = "Open new game";
             MessageBoxButton button = MessageBoxButton.YesNoCancel;
             MessageBoxImage icon = MessageBoxImage.Warning;
             MessageBox.Show(messageBoxText, caption, button, icon);

@@ -8,33 +8,22 @@ namespace WpfGame
 {
     public class Square 
     {
-        public List<Piece> PiecesList { get; set; }
+        public int X { get; private set; }
+        public int Y { get; private set; }
+        public string ImgSrc { get; private set; }
 
-        public double X { get; set; }
-        public double Y { get; set; }
-        public static double Width { get; } = 100;
-        public static double Height { get; } = 100;
-        public String Color { get; set; }
+        public event Action<Whose, Square> CommandLeave;
 
-        public class TempData
+        public void tryAndOccupy()
         {
-            private static int WIDTH = 100;
-            public double x;
-            public double y;
-            public String image;
-            public TempData(double tx, double ty, String img)
-            {
-                x = tx* WIDTH;
-                y = ty* WIDTH;
-                image = img;
-            }
+
         }
 
-        public Square(TempData d)
+        public Square(int tx, int ty, String img)
         {
-            X = d.x;
-            Y = d.y;
-            Color = d.image;
+            X = tx;
+            Y = ty;
+            ImgSrc = img;
         }
     }
 }
