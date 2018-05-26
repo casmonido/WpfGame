@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfGame"
         mc:Ignorable="d"
-        Title="The royal game of Ur" Height="450" Width="800" x:Name="ParentWindow">
+        Title="The royal game of Ur" Height="600" Width="800" MinHeight="300" MinWidth="400" 
+        x:Name="ParentWindow">
+    <Window.Resources>
+        <local:DoubleIntConverter x:Key="doubleToInt"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -24,22 +28,19 @@
             </MenuItem>
         </Menu>
 
-        <Grid MinHeight="150" MinWidth="400" Background="LightSeaGreen" Grid.Row="1" Grid.Column="0" Margin="50" VerticalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
+        <Grid Background="LightSeaGreen" Grid.Row="1" Grid.Column="0"
+            Width="{Binding ActualWidth, ElementName=ParentWindow, Mode=OneWay, Converter={StaticResource doubleToInt}}"
+            VerticalAlignment="Center" HorizontalAlignment="Center">
             <ItemsControl x:Name="board">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Grid>
+                        <Grid  VerticalAlignment="Center">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -58,6 +59,7 @@
                     <Style TargetType="ContentPresenter">
                         <Setter Property="Grid.Row" Value="{Binding Y}"/>
                         <Setter Property="Grid.Column" Value="{Binding X}"/>
+                        <Setter Property="Grid.ColumnSpan" Value="{Binding Size}"/>
                     </Style>
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>

@@ -56,6 +56,7 @@
     </ApplicationDefinition>
     <Compile Include="Board.cs" />
     <Compile Include="BoardVM.cs" />
+    <Compile Include="DoubleIntConverter.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="PieceVM.cs" />
     <Compile Include="Square.cs" />

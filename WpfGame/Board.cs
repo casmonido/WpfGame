@@ -14,9 +14,11 @@ namespace WpfGame
         public ObservableCollection<Square> squares = new ObservableCollection<Square>();
         public Board()
         {
+            squares.Add(new Square(0, 0, "Pink", 8));
             for (int j = 0; j < BOARD_HEIGHT; j++)
                 for (int i = 0; i < BOARD_LEN; i++)
-                    squares.Add(new Square(i, j, (i + j) % 2 == 0 ? "Blue" : "Black"));
+                    squares.Add(new Square(i, j+1, (i + j) % 2 == 0 ? "Blue" : "Black"));
+            squares.Add(new Square(0, 4, "Pink", 8));
         }
 
         public Square getNextLocation(Whose whosePath, int i)
