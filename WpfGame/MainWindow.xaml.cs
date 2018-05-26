@@ -26,7 +26,7 @@ namespace WpfGame
         public MainWindow(ObservableCollection<PieceVM> _pieces, BoardVM boardVM)
         {
             InitializeComponent();
-            pieces.ItemsSource = _pieces;
+            //pieces.ItemsSource = _pieces;
             board.ItemsSource = boardVM._board;
         }
 

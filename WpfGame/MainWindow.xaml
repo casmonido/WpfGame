@@ -6,8 +6,15 @@
         xmlns:local="clr-namespace:WpfGame"
         mc:Ignorable="d"
         Title="The royal game of Ur" Height="450" Width="800" x:Name="ParentWindow">
-    <DockPanel>
-        <Menu DockPanel.Dock="Top">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Menu DockPanel.Dock="Top" Grid.Row="0" Grid.Column="0">
             <MenuItem Header="_Game">
                 <MenuItem Header="_New" />
                 <MenuItem Header="_Open" Click="_Open" />
@@ -16,81 +23,53 @@
                 <MenuItem Header="_Exit" />
             </MenuItem>
         </Menu>
-        <Canvas Margin="0" Background="LightSeaGreen">
 
-            <Ellipse
-            Name="mymy"
-            Width="100"
-            Height="50"
-            Fill="Blue"
-            Stroke="Black"
-            StrokeThickness="4"
-            Canvas.Left="10"
-            Canvas.Top="100">
-            <Ellipse.Triggers>
-                <!-- Animates opacity. -->
-                <EventTrigger RoutedEvent="Ellipse.Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation
-                            Storyboard.TargetName="mymy" 
-                            Storyboard.TargetProperty="Opacity"
-                            From="1.0" To="0.0" Duration="0:0:5" 
-                            AutoReverse="True" RepeatBehavior="Forever" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Ellipse.Triggers>
-        </Ellipse>
+        <Grid MinHeight="150" MinWidth="400" Background="LightSeaGreen" Grid.Row="1" Grid.Column="0" Margin="50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-
-            <ItemsControl x:Name="board" >
+            <ItemsControl x:Name="board">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Rows="3" Columns="8" FlowDirection="RightToLeft"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemContainerStyle>
                     <Style TargetType="ContentPresenter">
-                        <Setter Property="Canvas.Left" Value="{Binding X}"/>
-                        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                        <Setter Property="Grid.Row" Value="{Binding Y}"/>
+                        <Setter Property="Grid.Column" Value="{Binding X}"/>
                     </Style>
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Rectangle Width="{Binding Width}" Height="{Binding Height}" Fill="{Binding ImgSrc}"/>
+                        <Rectangle Margin="0" Fill="{Binding ImgSrc}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
 
-            <ItemsControl x:Name="pieces" >
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Canvas/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemContainerStyle>
-                    <Style TargetType="ContentPresenter">
-                        <Setter Property="Canvas.Left" Value="{Binding X}"/>
-                        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
-                    </Style>
-                </ItemsControl.ItemContainerStyle>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Ellipse Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}" Width="{Binding Width}" Height="{Binding Height}" 
-                                  Fill="{Binding Color}">
-                            <Ellipse.InputBindings>
-                                <MouseBinding 
-                    Gesture="LeftClick"
-                    Command="{Binding MoveOnClick}"/>
-                                    
-                            </Ellipse.InputBindings>
-                        </Ellipse>
 
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Canvas>
-    </DockPanel>
+        </Grid>
+
+    </Grid>
 </Window>

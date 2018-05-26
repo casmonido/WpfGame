@@ -9,8 +9,8 @@ namespace WpfGame
     public class SquareVM
     {
         private Square model;
-        public double X { get; }
-        public double Y { get; }
+        public int X { get; }
+        public int Y { get; }
         public static double Width { get; } = App.UNIT;
         public static double Height { get; } = App.UNIT;
         public String ImgSrc { get; }
@@ -18,8 +18,8 @@ namespace WpfGame
         public SquareVM(Square s)
         {
             model = s;
-            X = s.X * App.UNIT;
-            Y = s.Y * App.UNIT;
+            X = s.X;
+            Y = s.Y;
             ImgSrc = s.ImgSrc;
         }
     }
