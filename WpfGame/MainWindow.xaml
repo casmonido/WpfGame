@@ -47,7 +47,7 @@
             <ItemsControl x:Name="board" >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas/>
+                        <UniformGrid Rows="3" Columns="8" FlowDirection="RightToLeft"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemContainerStyle>

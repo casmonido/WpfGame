@@ -23,32 +23,21 @@ namespace WpfGame
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static int UNIT = 100;
-        public static int NUM_PIECES = 7;
-
         public MainWindow(ObservableCollection<PieceVM> _pieces, BoardVM boardVM)
         {
             InitializeComponent();
-
-            
             pieces.ItemsSource = _pieces;
             board.ItemsSource = boardVM._board;
         }
 
-
-
         public void _Open(object sender, RoutedEventArgs e)
         {
-            string messageBoxText = "Do you want to save changes?";
-            string caption = "Open new game";
+            string messageBoxText = "----";
+            string caption = "Settings";
             MessageBoxButton button = MessageBoxButton.YesNoCancel;
             MessageBoxImage icon = MessageBoxImage.Warning;
             MessageBox.Show(messageBoxText, caption, button, icon);
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
