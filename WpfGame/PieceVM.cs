@@ -61,13 +61,13 @@ namespace WpfGame
         public PieceVM(Piece p)
         {
             model = p;
-            X = p.Location.X;// * App.UNIT + App.UNIT / 4;
-            Y = p.Location.Y;// * App.UNIT + App.UNIT / 4;
-            Color = model.Owner==Whose.computers?"Yellow":"Salmon";
+            X = p.Location.X;
+            Y = p.Location.Y;
+            Color = model.Owner==Whose.computers ? "Black":"White";
             Action<object> messageTarget = delegate (object s) {
                 model.move(1);
-                X = p.Location.X;// * App.UNIT + App.UNIT / 4;
-                Y = p.Location.Y;// * App.UNIT + App.UNIT / 4; //lepiej chyba kolejnym databindingiem na location 
+                X = p.Location.X;
+                Y = p.Location.Y; //lepiej chyba kolejnym databindingiem na location 
             };
             MoveOnClick = new MovePieceCommand(messageTarget);
         }

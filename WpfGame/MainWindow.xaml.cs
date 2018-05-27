@@ -37,6 +37,5 @@ namespace WpfGame
             MessageBoxImage icon = MessageBoxImage.Warning;
             MessageBox.Show(messageBoxText, caption, button, icon);
         }
-
     }
 }

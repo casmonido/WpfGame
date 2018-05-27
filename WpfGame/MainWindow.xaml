@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfGame"
         mc:Ignorable="d"
-        Title="The royal game of Ur" Height="600" Width="800" MinHeight="300" MinWidth="400" 
+        Title="The royal game of Ur" Height="500" Width="800" MinHeight="250" MinWidth="400" 
         x:Name="ParentWindow">
     <Window.Resources>
         <local:WindowToBoardConverter x:Key="windowToBoard"/>
         <local:SquareToRadiusConverter x:Key="squareToRadius"/>
     </Window.Resources>
-    <Grid>
+    <Grid Background="LightSteelBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -75,12 +75,15 @@
                                    Fill="Transparent"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type local:PieceVM}">
-                        <Ellipse Margin="0" 
+                        <Ellipse Margin="0" StrokeThickness="1"
                                    x:Name="self"
                                    Height="{Binding ActualWidth, ElementName=self, Mode=OneWay}"
                                    Width="{Binding ActualWidth, ElementName=theBoard, Mode=OneWay,
                                         Converter={StaticResource squareToRadius}}"
                                    Fill="{Binding Color}">
+                            <Ellipse.Stroke>
+                                <SolidColorBrush Color="DarkGray"/>
+                            </Ellipse.Stroke>
                             <Ellipse.InputBindings>
                                 <MouseBinding 
                                     Gesture="LeftClick"

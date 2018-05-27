@@ -15,8 +15,6 @@ namespace WpfGame
     /// </summary>
     public partial class App : Application
     {
-
-        public static int UNIT = 100;
         public static int NUM_PIECES = 7;
 
         private void Application_Startup(object sender, StartupEventArgs e)

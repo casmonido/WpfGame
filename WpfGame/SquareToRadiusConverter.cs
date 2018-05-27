@@ -13,7 +13,7 @@ namespace WpfGame
         public object Convert(object value, Type targetType,
         object parameter, CultureInfo culture)
         {
-            return ((double)value) / 16;
+            return 0.6 * ((double)value) / 8;
         }
 
         public object ConvertBack(object value, Type targetType,

@@ -13,8 +13,8 @@ namespace WpfGame
         public List<Square> extraSquares = new List<Square>();
         public Board()
         {
-            extraSquares.Add(new Square(0, 0, "Pink", 8));
-            extraSquares.Add(new Square(0, 4, "Pink", 8));
+            extraSquares.Add(new Square(0, 0, "Transparent", 8));
+            extraSquares.Add(new Square(0, 4, "Transparent", 8));
             int [] srcs = {4, 5, 1, 5,
                            3, 1, 6, 4,
                            4, 5, 1, 5};
