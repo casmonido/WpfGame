@@ -20,7 +20,7 @@ namespace WpfGame
             model = s;
             X = s.X;
             Y = s.Y;
-            ImgSrc = "square1.png";//s.ImgSrc;
+            ImgSrc = s.ImgSrc;
             Size = s.Size;
         }
     }

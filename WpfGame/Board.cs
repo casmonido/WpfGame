@@ -19,7 +19,7 @@ namespace WpfGame
             extraSquares.Add(new Square(0, 4, "Pink", 8));
             for (int j = 0; j < BOARD_HEIGHT; j++)
                 for (int i = 0; i < BOARD_LEN; i++)
-                    squares.Add(new Square(i, j+1, (i + j) % 2 == 0 ? "Blue" : "Black"));
+                    squares.Add(new Square(i, j+1, "/img/square1.png"));
         }
 
         public Square getNextLocation(Whose whosePath, int i)

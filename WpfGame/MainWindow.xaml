@@ -67,7 +67,7 @@
                 <ItemsControl.Resources>
                     <DataTemplate DataType="{x:Type local:SquareVM}">
                         <Image Margin="0" 
-                               Source="/img/square1.png"/>
+                               Source="{Binding ImgSrc}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type local:StartingSquareVM}">
                         <Rectangle Margin="0" 
