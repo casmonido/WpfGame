@@ -55,8 +55,7 @@ namespace WpfGame
                 }
             }
         }
-
-        public String ImgSrc { get; private set; }
+        public String Color { get; private set; }
         private Piece model;
 
         public PieceVM(Piece p)
@@ -64,7 +63,7 @@ namespace WpfGame
             model = p;
             X = p.Location.X;// * App.UNIT + App.UNIT / 4;
             Y = p.Location.Y;// * App.UNIT + App.UNIT / 4;
-            ImgSrc = model.Owner==Whose.computers?"Yellow":"Salmon";
+            Color = model.Owner==Whose.computers?"Yellow":"Salmon";
             Action<object> messageTarget = delegate (object s) {
                 model.move(1);
                 X = p.Location.X;// * App.UNIT + App.UNIT / 4;

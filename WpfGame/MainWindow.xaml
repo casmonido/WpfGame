@@ -15,6 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -29,7 +30,7 @@
             </MenuItem>
         </Menu>
 
-        <Grid Background="LightSeaGreen" Grid.Row="1" Grid.Column="0"
+        <Grid Grid.Row="1" Grid.Column="0"
             Width="{Binding ActualWidth, ElementName=ParentWindow, Mode=OneWay, 
             Converter={StaticResource windowToBoard}}"
             VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -66,15 +67,16 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.Resources>
                     <DataTemplate DataType="{x:Type local:SquareVM}">
-                        <Rectangle Margin="0" 
+                        <Image Margin="0" 
                                    x:Name="self"
                                    Height="{Binding ActualWidth, ElementName=self, Mode=OneWay}"
-                                   Fill="{Binding ImgSrc}"/>
+                                   Source="/img/square1.png">
+                        </Image>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type local:StartingSquareVM}">
                         <Rectangle Margin="0" 
                                    x:Name="self"
-                                   Fill="{Binding ImgSrc}"/>
+                                   Fill="Transparent"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type local:PieceVM}">
                         <Ellipse Margin="0" 
@@ -82,7 +84,7 @@
                                    Height="{Binding ActualWidth, ElementName=self, Mode=OneWay}"
                                    Width="{Binding ActualWidth, ElementName=theBoard, Mode=OneWay,
                                         Converter={StaticResource squareToRadius}}"
-                                   Fill="{Binding ImgSrc}">
+                                   Fill="{Binding Color}">
                             <Ellipse.InputBindings>
                                 <MouseBinding 
                                     Gesture="LeftClick"
@@ -92,10 +94,9 @@
                     </DataTemplate>
                 </ItemsControl.Resources>
             </ItemsControl>
-
-
-
         </Grid>
 
+        <Image Margin="0" Height="100" Width="100" Grid.Row="2" Grid.Column="0"
+               Source="/img/square1.png"/>
     </Grid>
 </Window>
