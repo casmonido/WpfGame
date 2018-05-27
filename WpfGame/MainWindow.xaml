@@ -10,6 +10,11 @@
     <Window.Resources>
         <local:WindowToBoardConverter x:Key="windowToBoard"/>
         <local:SquareToRadiusConverter x:Key="squareToRadius"/>
+        <Storyboard x:Key="MoveGrid">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="board">
+                <EasingThicknessKeyFrame KeyTime="0:0:1" Value="-300,0,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Grid Background="LightSteelBlue">
         <Grid.RowDefinitions>
@@ -91,7 +96,21 @@
                         </Ellipse>
                     </DataTemplate>
                 </ItemsControl.Resources>
+                <ItemsControl.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.MouseLeftButtonUp">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                            Storyboard.TargetName="board" 
+                            Storyboard.TargetProperty="Opacity"
+                            From="1.0" To="0.0" Duration="0:0:5" 
+                            AutoReverse="True" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </ItemsControl.Triggers>
             </ItemsControl>
+
         </Grid>
     </Grid>
 </Window>
