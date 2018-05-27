@@ -23,11 +23,11 @@ namespace WpfGame
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(ObservableCollection<PieceVM> _pieces, BoardVM boardVM)
+        public MainWindow(BoardVM boardVM)
         {
             InitializeComponent();
             //pieces.ItemsSource = _pieces;
-            board.ItemsSource = boardVM._board;
+            board.ItemsSource = boardVM.compositeCollection;
         }
 
         public void _Open(object sender, RoutedEventArgs e)

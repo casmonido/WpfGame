@@ -23,8 +23,8 @@ namespace WpfGame
             }
         }
 
-        private double x;
-        public double X
+        private int x;
+        public int X
         {
             get
             {
@@ -39,8 +39,8 @@ namespace WpfGame
                 }
             }
         }
-        private double y;
-        public double Y
+        private int y;
+        public int Y
         {
             get
             {
@@ -55,21 +55,23 @@ namespace WpfGame
                 }
             }
         }
-        public static double Width { get; } = 50;
-        public static double Height { get; } = 50;
-        public String Color { get; set; }
+        public int Size { get; } = 1;
+        public static double Width { get; } = App.UNIT/2;
+        public static double Height { get; } = App.UNIT/2;
+        public String ImgSrc { get; private set; }
         private Piece model;
 
         public PieceVM(Piece p)
         {
             model = p;
-            X = p.Location.X * App.UNIT + App.UNIT / 4;
-            Y = p.Location.Y * App.UNIT + App.UNIT / 4;
-            Color = model.Owner==Whose.computers?"Black":"White";
+            X = p.Location.X;// * App.UNIT + App.UNIT / 4;
+            Y = p.Location.Y;// * App.UNIT + App.UNIT / 4;
+            ImgSrc = model.Owner==Whose.computers?"Yellow":"Salmon";
             Action<object> messageTarget = delegate (object s) {
                 model.move(1);
-                X = p.Location.X * App.UNIT + App.UNIT / 4;
-                Y = p.Location.Y * App.UNIT + App.UNIT / 4; //lepiej chyba kolejnym databindingiem na location 
+                ImgSrc = "Gray";
+                X = p.Location.X;// * App.UNIT + App.UNIT / 4;
+                Y = p.Location.Y;// * App.UNIT + App.UNIT / 4; //lepiej chyba kolejnym databindingiem na location 
             };
             MoveOnClick = new MovePieceCommand(messageTarget);
         }
