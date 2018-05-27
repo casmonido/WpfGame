@@ -9,17 +9,26 @@ namespace WpfGame
 {
     public class Board
     {
-        public static int BOARD_LEN = 8;
-        public static int BOARD_HEIGHT = 3;
-        public ObservableCollection<Square> squares = new ObservableCollection<Square>();
-        public ObservableCollection<Square> extraSquares = new ObservableCollection<Square>();
+        public List<Square> squares = new List<Square>();
+        public List<Square> extraSquares = new List<Square>();
         public Board()
         {
             extraSquares.Add(new Square(0, 0, "Pink", 8));
             extraSquares.Add(new Square(0, 4, "Pink", 8));
-            for (int j = 0; j < BOARD_HEIGHT; j++)
-                for (int i = 0; i < BOARD_LEN; i++)
-                    squares.Add(new Square(i, j+1, "/img/square1.png"));
+            int [] srcs = {4, 5, 1, 5,
+                           3, 1, 6, 4,
+                           4, 5, 1, 5};
+            for (int j = 0; j < 3; j++)
+                for (int i = 0; i < 4; i++)
+                    squares.Add(new Square(i, j+1, "/img/square" + srcs[i+j*4] + ".png"));
+            int[] srcs1 = {4, 2,
+                           5, 1,
+                           4, 2};
+            for (int j = 0; j < 3; j++)
+                for (int i = 0; i < 2; i++)
+                    squares.Add(new Square(i + 6, j + 1, "/img/square" + srcs1[i + j * 2] + ".png"));
+            squares.Add(new Square(4, 2, "/img/square1.png"));
+            squares.Add(new Square(5, 2, "/img/square6.png"));
         }
 
         public Square getNextLocation(Whose whosePath, int i)
