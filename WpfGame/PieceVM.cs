@@ -58,16 +58,19 @@ namespace WpfGame
         public String Color { get; private set; }
         private Piece model;
 
-        public PieceVM(Piece p)
+        public PieceVM(Piece p, int pos)
         {
             model = p;
+            p.PropertyChanged += (sender, e) =>
+            {
+                X = p.Location.X;
+                Y = p.Location.Y;
+            };
             X = p.Location.X;
             Y = p.Location.Y;
             Color = model.Owner==Whose.computers ? "Black":"White";
             Action<object> messageTarget = delegate (object s) {
                 model.move(1);
-                X = p.Location.X;
-                Y = p.Location.Y; //lepiej chyba kolejnym databindingiem na location 
             };
             MoveOnClick = new MovePieceCommand(messageTarget);
         }

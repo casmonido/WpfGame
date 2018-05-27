@@ -61,7 +61,6 @@
                     <Style TargetType="ContentPresenter">
                         <Setter Property="Grid.Row" Value="{Binding Y, Mode=OneWay}"/>
                         <Setter Property="Grid.Column" Value="{Binding X, Mode=OneWay}"/>
-                        <Setter Property="Grid.ColumnSpan" Value="{Binding Size}"/>
                     </Style>
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.Resources>
@@ -70,9 +69,9 @@
                                Source="{Binding ImgSrc}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type local:StartingSquareVM}">
-                        <Rectangle Margin="0" 
-                                   x:Name="self"
-                                   Fill="Transparent"/>
+                        <Rectangle x:Name="self"
+                                   Fill="Transparent"
+                                   Margin="0"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type local:PieceVM}">
                         <Ellipse Margin="0" StrokeThickness="1"

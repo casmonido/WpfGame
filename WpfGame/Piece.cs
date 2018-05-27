@@ -14,28 +14,69 @@ namespace WpfGame
 {
     public enum Whose
     {
-        computers, players
+        computers, players, nobodys
     }
 
-    public class Piece
+    public class Piece : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        public void HandleCommandLeave(Whose w, Square s)
+        {
+            if (w != Owner || Location != s)
+                return;
+            pathCrossed = 0;
+            Location = board.getNextLocation(this, pathCrossed);
+        }
         private int pathCrossed = 0;
         private bool wholePathCrossed = false;
         public Whose Owner { get; private set; }
-        public Square Location { get; private set; }
+        private Square location;
+        public Square Location {
+            get
+            {
+                return location;
+            }
+            private set
+            {
+                if (location != value)
+                {
+                    location = value;
+                    NotifyPropertyChanged("Location");
+                }
+            }    
+        }
+        public StartingSquare startingSquare;
         private Board board;
 
-        public Piece(Whose o, Board b)
+        public Piece(Whose o, Board b, StartingSquare initialLoc)
         {
             Owner = o;
-            Location = b.getNextLocation(o, pathCrossed);
+            startingSquare = initialLoc;
+            Location = initialLoc;
             board = b;
         }
 
         public void move(int howMuch)
         {
-            pathCrossed += howMuch;
-            Location = board.getNextLocation(Owner, pathCrossed);
+            Location.leave(this);
+            Square scr = board.getNextLocation(this, pathCrossed+ howMuch);
+            if (scr.tryAndOccupy(this) == OccupyResponses.OK)
+            { 
+                Location = scr;
+                pathCrossed += howMuch;
+            }
         }
+    }
+    public enum OccupyResponses
+    {
+        OK, ONE_MORE_HOP
     }
 }

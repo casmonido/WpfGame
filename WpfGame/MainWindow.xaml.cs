@@ -23,9 +23,10 @@ namespace WpfGame
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(BoardVM boardVM)
+        public MainWindow(Board b, Player ap, Player bp)
         {
             InitializeComponent();
+            BoardVM boardVM = new BoardVM(b, ap, bp);
             board.ItemsSource = boardVM.compositeCollection;
         }
 

@@ -10,22 +10,32 @@ namespace WpfGame
     {
         public int X { get; private set; }
         public int Y { get; private set; }
-        public int Size { get; private set;  }
         public string ImgSrc { get; private set; }
-
         public event Action<Whose, Square> CommandLeave;
+        private Whose whose = Whose.nobodys;
 
-        public void tryAndOccupy()
+        public OccupyResponses tryAndOccupy(Piece p)
         {
-
+            if (whose != Whose.nobodys && whose == p.Owner)
+                return OccupyResponses.ONE_MORE_HOP; //ew info żeby spróbował o 1 dalej
+            if (CommandLeave != null)
+                CommandLeave(whose, this);
+            CommandLeave += p.HandleCommandLeave;
+            whose = p.Owner;
+            return OccupyResponses.OK;
         }
 
-        public Square(int tx, int ty, String img, int size=1)
+        public void leave(Piece p)
+        {
+            CommandLeave -= p.HandleCommandLeave;
+            whose = Whose.nobodys;
+        }
+
+        public Square(int tx, int ty, String img)
         {
             X = tx;
             Y = ty;
             ImgSrc = img;
-            Size = size;
         }
     }
 }

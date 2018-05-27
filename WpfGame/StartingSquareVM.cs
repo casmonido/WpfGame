@@ -8,7 +8,7 @@ namespace WpfGame
 {
     public class StartingSquareVM: SquareVM
     {
-        public StartingSquareVM(Square s): base(s)
+        public StartingSquareVM(StartingSquare s): base(s)
         {
         }
     }

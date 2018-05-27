@@ -21,7 +21,6 @@ namespace WpfGame
             X = s.X;
             Y = s.Y;
             ImgSrc = s.ImgSrc;
-            Size = s.Size;
         }
     }
 }

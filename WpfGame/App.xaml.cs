@@ -15,24 +15,13 @@ namespace WpfGame
     /// </summary>
     public partial class App : Application
     {
-        public static int NUM_PIECES = 7;
-
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            ObservableCollection<Piece> piecesModel = new ObservableCollection<Piece>();
-            ObservableCollection<PieceVM> _pieces = new ObservableCollection<PieceVM>();
-
             Board boardModel = new Board();
-            
+            Player player = new Player(Whose.players, boardModel);
+            Player computer = new Player(Whose.computers, boardModel);
 
-            for (int i = 0; i < NUM_PIECES; i++)
-                piecesModel.Add(new Piece(Whose.players, boardModel));
-            for (int i = 0; i < piecesModel.Count; i++)
-                _pieces.Add(new PieceVM(piecesModel[i]));
-
-            BoardVM boardVM = new BoardVM(boardModel, _pieces);
-
-            MainWindow win = new MainWindow(boardVM);
+            MainWindow win = new MainWindow(boardModel, player, computer);
             win.Show();
         }
     }
