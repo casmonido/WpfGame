@@ -12,18 +12,23 @@ namespace WpfGame
         public static int BOARD_LEN = 8;
         public static int BOARD_HEIGHT = 3;
         public ObservableCollection<Square> squares = new ObservableCollection<Square>();
+        public ObservableCollection<Square> extraSquares = new ObservableCollection<Square>();
         public Board()
         {
-            squares.Add(new Square(0, 0, "Pink", 8));
+            extraSquares.Add(new Square(0, 0, "Pink", 8));
+            extraSquares.Add(new Square(0, 4, "Pink", 8));
             for (int j = 0; j < BOARD_HEIGHT; j++)
                 for (int i = 0; i < BOARD_LEN; i++)
                     squares.Add(new Square(i, j+1, (i + j) % 2 == 0 ? "Blue" : "Black"));
-            squares.Add(new Square(0, 4, "Pink", 8));
         }
 
         public Square getNextLocation(Whose whosePath, int i)
         {
-            return squares[i];
+            if (i == 0)
+                return extraSquares[0];
+            if (i > squares.Count)
+                return extraSquares[1];
+            return squares[i-1];
         }
     }
 }

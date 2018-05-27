@@ -57,6 +57,7 @@
     <Compile Include="Board.cs" />
     <Compile Include="BoardVM.cs" />
     <Compile Include="SquareToRadiusConverter.cs" />
+    <Compile Include="StartingSquareVM.cs" />
     <Compile Include="WindowToBoardConverter.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="PieceVM.cs" />

@@ -33,7 +33,7 @@
             Width="{Binding ActualWidth, ElementName=ParentWindow, Mode=OneWay, 
             Converter={StaticResource windowToBoard}}"
             VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ItemsControl x:Name="board">
+            <ItemsControl x:Name="board" Grid.IsSharedSizeScope="True">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Grid VerticalAlignment="Center" x:Name="theBoard">
@@ -69,6 +69,11 @@
                         <Rectangle Margin="0" 
                                    x:Name="self"
                                    Height="{Binding ActualWidth, ElementName=self, Mode=OneWay}"
+                                   Fill="{Binding ImgSrc}"/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type local:StartingSquareVM}">
+                        <Rectangle Margin="0" 
+                                   x:Name="self"
                                    Fill="{Binding ImgSrc}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type local:PieceVM}">

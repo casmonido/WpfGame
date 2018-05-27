@@ -19,6 +19,8 @@ namespace WpfGame
             model = b;
             for (int i = 0; i < b.squares.Count; i++)
                 squares.Add(new SquareVM(b.squares[i]));
+            for (int i = 0; i < b.extraSquares.Count; i++)
+                squares.Add(new StartingSquareVM(b.extraSquares[i]));
             compositeCollection.Add(new CollectionContainer() { Collection = squares });
             compositeCollection.Add(new CollectionContainer() { Collection = _pieces });
         }

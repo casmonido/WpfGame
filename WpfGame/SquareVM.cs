@@ -13,8 +13,6 @@ namespace WpfGame
         public int X { get; }
         public int Y { get; }
         public int Size { get; }
-        public static double Width { get; } = App.UNIT;
-        public static double Height { get; } = App.UNIT;
         public String ImgSrc { get; }
 
         public SquareVM(Square s)
