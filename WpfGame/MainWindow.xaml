@@ -15,7 +15,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -68,10 +67,7 @@
                 <ItemsControl.Resources>
                     <DataTemplate DataType="{x:Type local:SquareVM}">
                         <Image Margin="0" 
-                                   x:Name="self"
-                                   Height="{Binding ActualWidth, ElementName=self, Mode=OneWay}"
-                                   Source="/img/square1.png">
-                        </Image>
+                               Source="/img/square1.png"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type local:StartingSquareVM}">
                         <Rectangle Margin="0" 
@@ -95,8 +91,5 @@
                 </ItemsControl.Resources>
             </ItemsControl>
         </Grid>
-
-        <Image Margin="0" Height="100" Width="100" Grid.Row="2" Grid.Column="0"
-               Source="/img/square1.png"/>
     </Grid>
 </Window>
