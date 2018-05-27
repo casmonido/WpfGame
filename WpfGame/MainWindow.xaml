@@ -38,11 +38,11 @@
                     <ItemsPanelTemplate>
                         <Grid VerticalAlignment="Center" x:Name="theBoard">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" SharedSizeGroup="RowSize"/>
+                                <RowDefinition Height="Auto" SharedSizeGroup="RowSize"/>
+                                <RowDefinition Height="Auto" SharedSizeGroup="RowSize"/>
+                                <RowDefinition Height="Auto" SharedSizeGroup="RowSize"/>
+                                <RowDefinition Height="Auto" SharedSizeGroup="RowSize"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
