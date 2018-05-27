@@ -55,9 +55,7 @@ namespace WpfGame
                 }
             }
         }
-        public int Size { get; } = 1;
-        public static double Width { get; } = App.UNIT/2;
-        public static double Height { get; } = App.UNIT/2;
+
         public String ImgSrc { get; private set; }
         private Piece model;
 
@@ -69,7 +67,6 @@ namespace WpfGame
             ImgSrc = model.Owner==Whose.computers?"Yellow":"Salmon";
             Action<object> messageTarget = delegate (object s) {
                 model.move(1);
-                ImgSrc = "Gray";
                 X = p.Location.X;// * App.UNIT + App.UNIT / 4;
                 Y = p.Location.Y;// * App.UNIT + App.UNIT / 4; //lepiej chyba kolejnym databindingiem na location 
             };

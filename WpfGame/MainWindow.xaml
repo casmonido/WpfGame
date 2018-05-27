@@ -8,7 +8,8 @@
         Title="The royal game of Ur" Height="600" Width="800" MinHeight="300" MinWidth="400" 
         x:Name="ParentWindow">
     <Window.Resources>
-        <local:DoubleIntConverter x:Key="doubleToInt"/>
+        <local:WindowToBoardConverter x:Key="windowToBoard"/>
+        <local:SquareToRadiusConverter x:Key="squareToRadius"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -29,12 +30,13 @@
         </Menu>
 
         <Grid Background="LightSeaGreen" Grid.Row="1" Grid.Column="0"
-            Width="{Binding ActualWidth, ElementName=ParentWindow, Mode=OneWay, Converter={StaticResource doubleToInt}}"
+            Width="{Binding ActualWidth, ElementName=ParentWindow, Mode=OneWay, 
+            Converter={StaticResource windowToBoard}}"
             VerticalAlignment="Center" HorizontalAlignment="Center">
             <ItemsControl x:Name="board">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Grid VerticalAlignment="Center">
+                        <Grid VerticalAlignment="Center" x:Name="theBoard">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
@@ -73,6 +75,8 @@
                         <Ellipse Margin="0" 
                                    x:Name="self"
                                    Height="{Binding ActualWidth, ElementName=self, Mode=OneWay}"
+                                   Width="{Binding ActualWidth, ElementName=theBoard, Mode=OneWay,
+                                        Converter={StaticResource squareToRadius}}"
                                    Fill="{Binding ImgSrc}">
                             <Ellipse.InputBindings>
                                 <MouseBinding 

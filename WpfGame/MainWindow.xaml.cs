@@ -26,7 +26,6 @@ namespace WpfGame
         public MainWindow(BoardVM boardVM)
         {
             InitializeComponent();
-            //pieces.ItemsSource = _pieces;
             board.ItemsSource = boardVM.compositeCollection;
         }
 
