@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" 
         xmlns:local="clr-namespace:WpfGame"
         mc:Ignorable="d"
         Title="The royal game of Ur" Height="500" Width="800" MinHeight="250" MinWidth="400" 
@@ -10,20 +11,61 @@
     <Window.Resources>
         <local:WindowToBoardConverter x:Key="windowToBoard"/>
         <local:SquareToRadiusConverter x:Key="squareToRadius"/>
-        <Storyboard x:Key="MoveGrid">
-            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="board">
-                <EasingThicknessKeyFrame KeyTime="0:0:1" Value="-300,0,0,0"/>
-            </ThicknessAnimationUsingKeyFrames>
-        </Storyboard>
+        <Style x:Key="PropertyTriggerExampleButtonStyle" TargetType="{x:Type Ellipse}">
+            <Setter Property="Opacity" Value="0.25" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                  To="1" Duration="0:0:1" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                  To="0.25" Duration="0:0:1" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
+
     <Grid Background="LightSteelBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <BeginStoryboard.Storyboard>
+                            <Storyboard TargetName="Button1" >
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)"
+                                    By="150" Duration="0:0:1" />
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.Y)"
+                                    By="150" Duration="0:0:1" />
+                            </Storyboard>
+                        </BeginStoryboard.Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Grid.Triggers>
+        
+        
         <Menu DockPanel.Dock="Top" Grid.Row="0" Grid.Column="0">
             <MenuItem Header="_Game">
                 <MenuItem Header="_New" />
@@ -84,7 +126,11 @@
                                    Height="{Binding ActualWidth, ElementName=self, Mode=OneWay}"
                                    Width="{Binding ActualWidth, ElementName=theBoard, Mode=OneWay,
                                         Converter={StaticResource squareToRadius}}"
-                                   Fill="{Binding Color}">
+                                   Fill="{Binding Color}"
+                                 Style="{StaticResource PropertyTriggerExampleButtonStyle}">
+                            <Ellipse.RenderTransform>
+                                <TranslateTransform />
+                            </Ellipse.RenderTransform>
                             <Ellipse.Stroke>
                                 <SolidColorBrush Color="DarkGray"/>
                             </Ellipse.Stroke>
@@ -93,6 +139,8 @@
                                     Gesture="LeftClick"
                                     Command="{Binding MoveOnClick}"/>
                             </Ellipse.InputBindings>
+
+
                         </Ellipse>
                     </DataTemplate>
                 </ItemsControl.Resources>
@@ -100,17 +148,21 @@
                     <EventTrigger RoutedEvent="Ellipse.MouseLeftButtonUp">
                         <BeginStoryboard>
                             <Storyboard>
-                                <DoubleAnimation
-                            Storyboard.TargetName="board" 
-                            Storyboard.TargetProperty="Opacity"
-                            From="1.0" To="0.0" Duration="0:0:5" 
-                            AutoReverse="True" RepeatBehavior="Forever" />
+
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
                 </ItemsControl.Triggers>
             </ItemsControl>
+            <Button Grid.Column="0" Grid.Row="2" Height="60" Width="90" Content="Button1" Name="Button1">
 
+                <Button.RenderTransform>
+
+                    <TranslateTransform />
+
+                </Button.RenderTransform>
+
+            </Button>
         </Grid>
     </Grid>
 </Window>

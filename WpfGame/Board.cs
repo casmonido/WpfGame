@@ -61,7 +61,7 @@ namespace WpfGame
 
         public Square getNextLocation(Piece p, int i)
         {
-            if (i <= 0 || i >= PATH_LEN)
+            if (i <= 0 || i > PATH_LEN)
                 return p.startingSquare;
             if (p.Owner == Whose.players)
                 return playersPath[i-1];
