@@ -22,11 +22,6 @@ namespace WpfGame
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        /*
-        public static readonly RoutedEvent MovedEvent =
-        EventManager.RegisterRoutedEvent("Moved", RoutingStrategy.Tunnel,
-            typeof(RoutedEventHandler), typeof(PieceVM));
-        */
 
     private int x;
         public int X
@@ -78,7 +73,6 @@ namespace WpfGame
                 model.move(1);
             };
             MoveOnClick = new MovePieceCommand(messageTarget);
-
         }
 
         public MovePieceCommand MoveOnClick { get; set; }

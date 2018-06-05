@@ -20,8 +20,9 @@ namespace WpfGame
             Board boardModel = new Board();
             Player player = new Player(Whose.players, boardModel);
             Player computer = new Player(Whose.computers, boardModel);
+            Dice dice = new Dice();
 
-            MainWindow win = new MainWindow(boardModel, player, computer);
+            MainWindow win = new MainWindow(boardModel, player, computer, dice);
             win.Show();
         }
     }

@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" 
         xmlns:local="clr-namespace:WpfGame"
         mc:Ignorable="d"
         Title="The royal game of Ur" Height="500" Width="800" MinHeight="250" MinWidth="400" 
@@ -11,8 +10,8 @@
     <Window.Resources>
         <local:WindowToBoardConverter x:Key="windowToBoard"/>
         <local:SquareToRadiusConverter x:Key="squareToRadius"/>
-        <Style x:Key="PropertyTriggerExampleButtonStyle" TargetType="{x:Type Ellipse}">
-            <Setter Property="Opacity" Value="0.25" />
+        <Style x:Key="ChangeOpacityOnMouseOverStyle" TargetType="{x:Type Ellipse}">
+            <Setter Property="Opacity" Value="0.5" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Trigger.EnterActions>
@@ -27,7 +26,7 @@
                         <BeginStoryboard>
                             <Storyboard>
                                 <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                  To="0.25" Duration="0:0:1" />
+                  To="0.7" Duration="0:0:1" />
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.ExitActions>
@@ -39,34 +38,13 @@
     <Grid Background="LightSteelBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid.Triggers>
-            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                <EventTrigger.Actions>
-                    <BeginStoryboard>
-                        <BeginStoryboard.Storyboard>
-                            <Storyboard TargetName="Button1" >
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)"
-                                    By="150" Duration="0:0:1" />
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.Y)"
-                                    By="150" Duration="0:0:1" />
-                            </Storyboard>
-                        </BeginStoryboard.Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger.Actions>
-            </EventTrigger>
-        </Grid.Triggers>
-        
-        
-        <Menu DockPanel.Dock="Top" Grid.Row="0" Grid.Column="0">
+        <Menu Grid.Row="0" Grid.Column="0">
             <MenuItem Header="_Game">
                 <MenuItem Header="_New" />
                 <MenuItem Header="_Open" Click="_Open" />
@@ -127,7 +105,7 @@
                                    Width="{Binding ActualWidth, ElementName=theBoard, Mode=OneWay,
                                         Converter={StaticResource squareToRadius}}"
                                    Fill="{Binding Color}"
-                                 Style="{StaticResource PropertyTriggerExampleButtonStyle}">
+                                 Style="{StaticResource ChangeOpacityOnMouseOverStyle}">
                             <Ellipse.RenderTransform>
                                 <TranslateTransform />
                             </Ellipse.RenderTransform>
@@ -139,30 +117,10 @@
                                     Gesture="LeftClick"
                                     Command="{Binding MoveOnClick}"/>
                             </Ellipse.InputBindings>
-
-
                         </Ellipse>
                     </DataTemplate>
                 </ItemsControl.Resources>
-                <ItemsControl.Triggers>
-                    <EventTrigger RoutedEvent="Ellipse.MouseLeftButtonUp">
-                        <BeginStoryboard>
-                            <Storyboard>
-
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </ItemsControl.Triggers>
             </ItemsControl>
-            <Button Grid.Column="0" Grid.Row="2" Height="60" Width="90" Content="Button1" Name="Button1">
-
-                <Button.RenderTransform>
-
-                    <TranslateTransform />
-
-                </Button.RenderTransform>
-
-            </Button>
         </Grid>
     </Grid>
 </Window>

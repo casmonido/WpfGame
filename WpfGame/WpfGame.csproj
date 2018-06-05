@@ -56,6 +56,10 @@
     </ApplicationDefinition>
     <Compile Include="Board.cs" />
     <Compile Include="BoardVM.cs" />
+    <Compile Include="Dice.cs" />
+    <Compile Include="DiceVM.cs" />
+    <Compile Include="Die.cs" />
+    <Compile Include="DieVM.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="SquareToRadiusConverter.cs" />
     <Compile Include="StartingSquare.cs" />
