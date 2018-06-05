@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace WpfGame
 {
@@ -14,7 +15,7 @@ namespace WpfGame
         {
             model = d;
             for (int i = 0; i < d.dice.Count; ++i)
-                dice.Add(new DieVM(d.dice[i]));
+                dice.Add(new DieVM(d.dice[i], i));
         }
     }
 }

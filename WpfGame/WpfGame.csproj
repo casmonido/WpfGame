@@ -60,6 +60,7 @@
     <Compile Include="DiceVM.cs" />
     <Compile Include="Die.cs" />
     <Compile Include="DieVM.cs" />
+    <Compile Include="ExecuteAction.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="SquareToRadiusConverter.cs" />
     <Compile Include="StartingSquare.cs" />
@@ -128,6 +129,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\square1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\dicedown.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\diceup.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -23,7 +23,7 @@ namespace WpfGame
             }
         }
 
-    private int x;
+        private int x;
         public int X
         {
             get
@@ -72,27 +72,9 @@ namespace WpfGame
             Action<object> messageTarget = delegate (object s) {
                 model.move(1);
             };
-            MoveOnClick = new MovePieceCommand(messageTarget);
+            MoveOnClick = new ExecuteAction(messageTarget);
         }
 
-        public MovePieceCommand MoveOnClick { get; set; }
-
-        public class MovePieceCommand : ICommand
-        {
-            private Action<object> execute;
-            public MovePieceCommand(Action<object> execute)
-            {
-                this.execute = execute;
-            }
-            public void Execute(object parameter)
-            {
-                this.execute(parameter);
-            }
-            public bool CanExecute(object parameter)
-            {
-                return true;
-            }
-            public event EventHandler CanExecuteChanged;
-        }
+        public ExecuteAction MoveOnClick { get; set; }
     }
 }

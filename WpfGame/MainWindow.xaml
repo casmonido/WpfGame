@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfGame"
         mc:Ignorable="d"
-        Title="The royal game of Ur" Height="500" Width="800" MinHeight="250" MinWidth="400" 
+        Title="The royal game of Ur" Height="500" Width="1000" MinHeight="250" MinWidth="500" 
         x:Name="ParentWindow">
     <Window.Resources>
         <local:WindowToBoardConverter x:Key="windowToBoard"/>
@@ -57,8 +57,21 @@
         <Grid Grid.Row="1" Grid.Column="0"
             Width="{Binding ActualWidth, ElementName=ParentWindow, Mode=OneWay, 
             Converter={StaticResource windowToBoard}}"
-            VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ItemsControl x:Name="board" Grid.IsSharedSizeScope="True">
+            HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="50 0 0 0">
+
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <ItemsControl Grid.Row="0" Grid.Column="0"
+                x:Name="board" Grid.IsSharedSizeScope="True">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Grid VerticalAlignment="Center" x:Name="theBoard">
@@ -121,6 +134,67 @@
                     </DataTemplate>
                 </ItemsControl.Resources>
             </ItemsControl>
+
+
+
+
+
+
+
+
+
+            <ItemsControl Grid.Row="0" Grid.Column="1"
+                x:Name="dice" Grid.IsSharedSizeScope="True" Margin="0 0 0 0"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid  x:Name="theDice">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" SharedSizeGroup="ColumnSize"/>
+                                <ColumnDefinition Width="*" SharedSizeGroup="ColumnSize"/>
+                                <ColumnDefinition Width="*" SharedSizeGroup="ColumnSize"/>
+                                <ColumnDefinition Width="*" SharedSizeGroup="ColumnSize"/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Grid.Row" Value="0"/>
+                        <Setter Property="Grid.Column" Value="{Binding Lp, Mode=OneWay}"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.Resources>
+                    <DataTemplate DataType="{x:Type local:DieVM}">
+                        <Image Margin="0" 
+                               Source="{Binding ImgSrc}">
+
+
+
+                            <Image.InputBindings>
+                                <MouseBinding 
+                                    Gesture="LeftClick"
+                                    Command="{Binding RollOnClick}"/>
+                            </Image.InputBindings>
+                        </Image>
+                    </DataTemplate>
+                </ItemsControl.Resources>
+            </ItemsControl>
+
+
+
+
+
+
+
+
+
+
+
+
         </Grid>
     </Grid>
 </Window>
