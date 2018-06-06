@@ -144,19 +144,18 @@
 
 
             <ItemsControl Grid.Row="0" Grid.Column="1"
-                x:Name="dice" Grid.IsSharedSizeScope="True" Margin="0 0 0 0"
-                HorizontalAlignment="Center" VerticalAlignment="Center">
+                x:Name="dice">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Grid  x:Name="theDice">
+                        <Grid x:Name="theDice">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" SharedSizeGroup="ColumnSize"/>
-                                <ColumnDefinition Width="*" SharedSizeGroup="ColumnSize"/>
-                                <ColumnDefinition Width="*" SharedSizeGroup="ColumnSize"/>
-                                <ColumnDefinition Width="*" SharedSizeGroup="ColumnSize"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                         </Grid>
                     </ItemsPanelTemplate>
@@ -169,11 +168,8 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.Resources>
                     <DataTemplate DataType="{x:Type local:DieVM}">
-                        <Image Margin="0" 
+                        <Image Margin="10" 
                                Source="{Binding ImgSrc}">
-
-
-
                             <Image.InputBindings>
                                 <MouseBinding 
                                     Gesture="LeftClick"
