@@ -51,10 +51,9 @@ namespace WpfGame
                     NotifyPropertyChanged("Rolled");
                 }
             }
-        } 
+        }
 
-        
-
+    
         public Game()
         {
             Board = new Board();

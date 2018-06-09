@@ -61,6 +61,7 @@
     <Compile Include="Die.cs" />
     <Compile Include="DieVM.cs" />
     <Compile Include="ExecuteAction.cs" />
+    <Compile Include="GameVM.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="SquareToRadiusConverter.cs" />
     <Compile Include="StartingSquare.cs" />

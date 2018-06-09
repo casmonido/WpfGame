@@ -159,7 +159,7 @@
                     <Viewbox.LayoutTransform>
                         <ScaleTransform ScaleX="1" />
                     </Viewbox.LayoutTransform>
-                    <TextBlock Text="Players turn"  
+                    <TextBlock Text="{Binding WhoseTurnText}"  
                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 </Viewbox>
 
