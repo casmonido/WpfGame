@@ -1,19 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WpfGame
 {
-    public class Game
+    public class Game : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         public Board Board { get; private set; }
         public Player Player { get; private set; }
         public Player Computer { get; private set; }
         public Dice Dice { get; private set; }
-        public Whose Turn { get; set; } = Whose.players;
-        public bool Rolled { get; set; } = false;
+        private Whose turn = Whose.players;
+        public Whose Turn
+        {
+            get
+            {
+                return turn;
+            }
+            set
+            {
+                if (turn != value)
+                {
+                    turn = value;
+                    NotifyPropertyChanged("Turn");
+                }
+            }
+        }
+        private bool rolled = false;
+        public bool Rolled {
+            get
+            {
+                return rolled;
+            }
+            set
+            {
+                if (rolled != value)
+                {
+                    rolled = value;
+                    NotifyPropertyChanged("Rolled");
+                }
+            }
+        } 
+
+        
 
         public Game()
         {

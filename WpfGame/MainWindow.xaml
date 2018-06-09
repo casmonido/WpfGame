@@ -164,18 +164,12 @@
                 </Viewbox>
 
 
-                <Viewbox Grid.Row="3" Grid.Column="0" >
-                    <Viewbox.LayoutTransform>
-                        <ScaleTransform ScaleX="1" />
-                    </Viewbox.LayoutTransform>
-                    <TextBlock Text="Computers turn"  
-                               HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                </Viewbox>
 
 
-                <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Background="Chartreuse"
+                <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Background="Chartreuse"
                        x:Name="diceButton">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
@@ -184,14 +178,14 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Viewbox Grid.Row="2" Grid.Column="0" >
+                    <Viewbox Grid.Row="3" Grid.Column="0" >
                         <Viewbox.LayoutTransform>
                             <ScaleTransform ScaleX="1" />
                         </Viewbox.LayoutTransform>
-                        <TextBlock Text="Roll"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        <TextBlock Text="{Binding InfoWhatToDo}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </Viewbox>
 
-                    <ItemsControl x:Name="dice" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+                    <ItemsControl x:Name="dice" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <Grid>

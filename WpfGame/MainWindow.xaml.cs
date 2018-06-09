@@ -27,7 +27,7 @@ namespace WpfGame
         {
             InitializeComponent();
             BoardVM boardVM = new BoardVM(game.Board, game.Player.Pieces, game.Computer.Pieces);
-            DiceVM diceVM = new DiceVM(game.Dice);
+            DiceVM diceVM = new DiceVM(game.Dice, game);
             board.ItemsSource = boardVM.compositeCollection;
             dice.ItemsSource = diceVM.dice;
             diceButton.DataContext = diceVM;
