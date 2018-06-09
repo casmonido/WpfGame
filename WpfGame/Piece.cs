@@ -38,6 +38,7 @@ namespace WpfGame
         private int pathCrossed = 0;
         private bool wholePathCrossed = false;
         public Whose Owner { get; private set; }
+        private Player player;
         private Square location;
         public Square Location {
             get
@@ -56,20 +57,26 @@ namespace WpfGame
         public StartingSquare startingSquare;
         private Board board;
 
-        public Piece(Whose o, Board b, StartingSquare initialLoc)
+        public Piece(Whose o, Board b, StartingSquare initialLoc, Player p)
         {
+            player = p;
             Owner = o;
             startingSquare = initialLoc;
             Location = initialLoc;
             board = b;
         }
 
+        public void tryMove()
+        {
+            player.move(this);
+        }
+
         public void move(int howMuch)
         {
             Location.leave(this);
-            Square scr = board.getNextLocation(this, pathCrossed+ howMuch);
+            Square scr = board.getNextLocation(this, pathCrossed + howMuch);
             if (scr.tryAndOccupy(this) == OccupyResponses.OK)
-            { 
+            {
                 Location = scr;
                 pathCrossed += howMuch;
             }

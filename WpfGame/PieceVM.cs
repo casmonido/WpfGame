@@ -70,7 +70,7 @@ namespace WpfGame
             Y = p.Location.Y;
             Color = model.Owner==Whose.computers ? "Black":"White";
             Action<object> messageTarget = delegate (object s) {
-                model.move(1);
+                model.tryMove();
             };
             MoveOnClick = new ExecuteAction(messageTarget);
         }
