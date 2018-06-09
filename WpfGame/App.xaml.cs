@@ -17,12 +17,8 @@ namespace WpfGame
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            Board boardModel = new Board();
-            Player player = new Player(Whose.players, boardModel);
-            Player computer = new Player(Whose.computers, boardModel);
-            Dice dice = new Dice();
-
-            MainWindow win = new MainWindow(boardModel, player, computer, dice);
+            Game game = new Game();
+            MainWindow win = new MainWindow(game);
             win.Show();
         }
     }

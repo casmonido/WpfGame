@@ -23,11 +23,11 @@ namespace WpfGame
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(Board b, Player ap, Player bp, Dice d)
+        public MainWindow(Game game)
         {
             InitializeComponent();
-            BoardVM boardVM = new BoardVM(b, ap, bp);
-            DiceVM diceVM = new DiceVM(d);
+            BoardVM boardVM = new BoardVM(game.Board, game.Player.Pieces, game.Computer.Pieces);
+            DiceVM diceVM = new DiceVM(game.Dice);
             board.ItemsSource = boardVM.compositeCollection;
             dice.ItemsSource = diceVM.dice;
             diceButton.DataContext = diceVM;

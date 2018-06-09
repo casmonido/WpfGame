@@ -15,21 +15,22 @@ namespace WpfGame
         public CompositeCollection compositeCollection = new CompositeCollection();
         ObservableCollection<PieceVM> pieces = new ObservableCollection<PieceVM>();
 
-        public BoardVM(Board b, Player player, Player comp)
+        public BoardVM(Board b, 
+            Collection<Piece> playersPieces, Collection<Piece> computersPieces)
         {
             model = b;
             for (int i = 0; i < b.squares.Count; i++)
                 squares.Add(new SquareVM(b.squares[i]));
             compositeCollection.Add(new CollectionContainer() { Collection = squares });
-            for (int i = 0; i < player.piecesModel.Count; i++)
+            for (int i = 0; i < playersPieces.Count; i++)
             {
-                squares.Add(new StartingSquareVM(player.piecesModel[i].startingSquare));
-                pieces.Add(new PieceVM(player.piecesModel[i], i));
+                squares.Add(new StartingSquareVM(playersPieces[i].startingSquare));
+                pieces.Add(new PieceVM(playersPieces[i], i));
             }
-            for (int i = 0; i < comp.piecesModel.Count; i++)
+            for (int i = 0; i < computersPieces.Count; i++)
             {
-                squares.Add(new StartingSquareVM(comp.piecesModel[i].startingSquare));
-                pieces.Add(new PieceVM(comp.piecesModel[i], i));
+                squares.Add(new StartingSquareVM(computersPieces[i].startingSquare));
+                pieces.Add(new PieceVM(computersPieces[i], i));
             }
             compositeCollection.Add(new CollectionContainer() { Collection = pieces });
         }
