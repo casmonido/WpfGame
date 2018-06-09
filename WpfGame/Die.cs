@@ -18,7 +18,7 @@ namespace WpfGame
             }
         }
         public int rolledNum = 0; 
-        protected Random random = new Random();
+        protected Random random = new Random(Guid.NewGuid().GetHashCode());
         public int Roll()
         {
             rolledNum = random.Next(0, 2);

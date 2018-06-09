@@ -25,7 +25,6 @@ namespace WpfGame
         public DieVM(Die d, int lp)
         {
             model = d;
-            d.rolledNum = lp % 2;
             d.PropertyChanged += (sender, e) =>
             {
                 ImgSrc = model.getRolledNum() == 0 ? IMG_DOWN : IMG_UP;
