@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,12 @@ namespace WpfGame
             model = d;
             for (int i = 0; i < d.dice.Count; ++i)
                 dice.Add(new DieVM(d.dice[i], i));
+            Action<object> messageTarget = delegate (object s) {
+                model.Roll();
+            };
+            RollOnClick = new ExecuteAction(messageTarget);
         }
+
+        public ExecuteAction RollOnClick { get; set; }
     }
 }

@@ -173,7 +173,8 @@
                 </Viewbox>
 
 
-                <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Background="Chartreuse">
+                <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Background="Chartreuse"
+                       x:Name="diceButton">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
@@ -193,7 +194,7 @@
                     <ItemsControl x:Name="dice" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <Grid x:Name="theDice">
+                                <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
@@ -216,16 +217,16 @@
                             <DataTemplate DataType="{x:Type local:DieVM}">
                                 <Image Margin="10" 
                                    Source="{Binding ImgSrc}">
-                                    <Image.InputBindings>
-                                        <MouseBinding 
-                                        Gesture="LeftClick"
-                                        Command="{Binding RollOnClick}"/>
-                                    </Image.InputBindings>
                                 </Image>
                             </DataTemplate>
                         </ItemsControl.Resources>
                     </ItemsControl>
 
+                    <Grid.InputBindings>
+                        <MouseBinding 
+                                        Gesture="LeftClick"
+                                        Command="{Binding RollOnClick}"/>
+                    </Grid.InputBindings>
 
                 </Grid>
             </Grid>

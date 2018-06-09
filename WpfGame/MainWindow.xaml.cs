@@ -30,6 +30,7 @@ namespace WpfGame
             DiceVM diceVM = new DiceVM(d);
             board.ItemsSource = boardVM.compositeCollection;
             dice.ItemsSource = diceVM.dice;
+            diceButton.DataContext = diceVM;
         }
 
         public void _Open(object sender, RoutedEventArgs e)

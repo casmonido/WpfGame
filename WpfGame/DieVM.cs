@@ -1,13 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WpfGame
 {
-    public class DieVM
+    public class DieVM : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private static string IMG_UP = "/img/diceup.gif";
         private static string IMG_DOWN = "/img/dicedown.gif";
         public String ImgSrc { get; private set; }
@@ -16,14 +25,20 @@ namespace WpfGame
         public DieVM(Die d, int lp)
         {
             model = d;
+            d.rolledNum = lp % 2;
+            d.PropertyChanged += (sender, e) =>
+            {
+                ImgSrc = model.getRolledNum() == 0 ? IMG_DOWN : IMG_UP;
+                NotifyPropertyChanged("ImgSrc");
+            };
             ImgSrc = d.getRolledNum() == 0 ? IMG_DOWN : IMG_UP;
             Lp = lp;
-            Action<object> messageTarget = delegate (object s) {
-               //
-            };
-            RollOnClick = new ExecuteAction(messageTarget);
         }
 
-        public ExecuteAction RollOnClick { get; set; }
+        void changeItemOnClick(object sender, EventArgs e)
+        {
+            ImgSrc = model.getRolledNum() == 0 ? IMG_DOWN : IMG_UP;
+            NotifyPropertyChanged("ImgSrc");
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +18,11 @@ namespace WpfGame
                 dice.Add(new Die());
         }
 
-        public int roll()
+        new public int Roll()
         {
             rolledNum = 0;
             for (int i = 0; i < dice.Count; ++i)
-                rolledNum += dice[i].roll();
+                rolledNum += dice[i].Roll();
             return rolledNum;
         }
     }
