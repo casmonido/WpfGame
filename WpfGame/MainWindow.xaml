@@ -142,7 +142,7 @@
 
 
 
-            <Grid Grid.Row="0" Grid.Column="1" Margin="50 0 0 0" Background="CornflowerBlue">
+            <Grid Grid.Row="0" Grid.Column="1" Margin="50 120 0 120" Background="CornflowerBlue">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -153,8 +153,24 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock  Grid.Row="0" Grid.Column="0" Text="sklds"/>
-                <TextBlock  Grid.Row="2" Grid.Column="0" Text="sklds" />
+
+                <Viewbox Grid.Row="0" Grid.Column="0" >
+                    <Viewbox.LayoutTransform>
+                        <ScaleTransform ScaleX="1" />
+                    </Viewbox.LayoutTransform>
+                    <TextBlock Text="random text"  
+                               HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                </Viewbox>
+
+
+                <Viewbox Grid.Row="2" Grid.Column="0" >
+                    <Viewbox.LayoutTransform>
+                        <ScaleTransform ScaleX="1" />
+                    </Viewbox.LayoutTransform>
+                    <TextBlock Text="random text"  HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                </Viewbox>
+                
+                
                 <ItemsControl x:Name="dice" Grid.Row="1" Grid.Column="0">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -192,23 +208,20 @@
                 </ItemsControl>
 
 
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
 
 
 
             </Grid>
-
-
-
-
-
-
-
-
-
-
-
-
-
         </Grid>
     </Grid>
 </Window>
