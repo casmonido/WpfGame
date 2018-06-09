@@ -36,7 +36,7 @@ namespace WpfGame
             Location = board.getNextLocation(this, pathCrossed);
         }
         private int pathCrossed = 0;
-        private bool wholePathCrossed = false;
+        public bool WholePathCrossed { get; private set; }  = false;
         public Whose Owner { get; private set; }
         private Player player;
         private Square location;
