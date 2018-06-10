@@ -32,12 +32,16 @@ namespace WpfGame
         private void moveOnTick(object sender, EventArgs e)
         {
             timer.Tick -= moveOnTick;
-            int i;
+            OccupyResponses res;
             do
             {
-                i = rand.Next(0, NUM_PIECES);
-            } while (Pieces[i].WholePathCrossed);
-            move(Pieces[i]);
+                int i;
+                do
+                {
+                    i = rand.Next(0, NUM_PIECES);
+                } while (Pieces[i].WholePathCrossed);
+                res = move(Pieces[i]);
+            } while (res != OccupyResponses.OK);
         }
 
         public Player(Whose w, Board boardModel, Game g)
@@ -60,11 +64,13 @@ namespace WpfGame
                 };
         }
 
-        public void move(Piece p)
+        public OccupyResponses move(Piece p)
         {
             if (game.Turn != who || !game.Rolled)
-                return;
-            p.move(game.Dice.RolledNum);
+                return OccupyResponses.NOT_OK;
+            OccupyResponses response = p.move(game.Dice.RolledNum);
+            if (response != OccupyResponses.OK)
+                return response;
             if (p.PathCrossed > Board.PATH_LEN)
             {
                 p.WholePathCrossed = true;
@@ -73,6 +79,7 @@ namespace WpfGame
                     game.setGameWon(this.who);
             }
             game.changeTurn();
+            return response;
         }
     }
 }

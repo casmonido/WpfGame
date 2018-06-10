@@ -71,15 +71,17 @@ namespace WpfGame
             player.move(this);
         }
 
-        public void move(int howMuch)
+        public OccupyResponses move(int howMuch)
         {
             Location.leave(this);
             Square scr = board.getNextLocation(this, PathCrossed + howMuch);
-            if (scr.tryAndOccupy(this) == OccupyResponses.OK)
+            OccupyResponses response = scr.tryAndOccupy(this);
+            if (response == OccupyResponses.OK)
             {
                 Location = scr;
                 PathCrossed += howMuch;
             }
+            return response;
         }
     }
     public enum OccupyResponses
