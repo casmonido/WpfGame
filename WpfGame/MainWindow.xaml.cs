@@ -26,21 +26,46 @@ namespace WpfGame
         public MainWindow(Game game)
         {
             InitializeComponent();
-            this.DataContext = new GameVM(game);
-            BoardVM boardVM = new BoardVM(game.Board, game.Player.Pieces, game.Computer.Pieces);
-            DiceVM diceVM = new DiceVM(game.Dice, game);
-            board.ItemsSource = boardVM.compositeCollection;
-            dice.ItemsSource = diceVM.dice;
-            diceButton.DataContext = diceVM;
+            GameVM gameVM = new GameVM(game);
+            this.DataContext = gameVM;
+            board.ItemsSource = gameVM.BoardVM.compositeCollection;
+            dice.ItemsSource = gameVM.DiceVM.dice;
+            diceButton.DataContext = gameVM.DiceVM;
         }
 
-        public void _Open(object sender, RoutedEventArgs e)
+        public void _Settings(object sender, RoutedEventArgs e)
         {
             string messageBoxText = "----";
             string caption = "Settings";
             MessageBoxButton button = MessageBoxButton.YesNoCancel;
             MessageBoxImage icon = MessageBoxImage.Warning;
             MessageBox.Show(messageBoxText, caption, button, icon);
+        }
+
+        public void _New(object sender, RoutedEventArgs e)
+        {
+            string messageBoxText = "Are you sure you want to close this game and open another?";
+            string caption = "New";
+            MessageBoxResult result = MessageBox.Show(messageBoxText, caption,
+                MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                GameVM gameVM = new GameVM(new Game()); // app powinien to stworzyć 
+                this.DataContext = gameVM;
+                board.ItemsSource = gameVM.BoardVM.compositeCollection;
+                dice.ItemsSource = gameVM.DiceVM.dice;
+                diceButton.DataContext = gameVM.DiceVM;
+            }
+        }
+
+        public void _Exit(object sender, RoutedEventArgs e)
+        {
+            string messageBoxText = "Are you sure you want to quit this game?";
+            string caption = "Exit";
+            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, 
+                MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+                System.Environment.Exit(1);
         }
     }
 }

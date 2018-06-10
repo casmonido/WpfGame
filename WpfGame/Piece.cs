@@ -27,7 +27,6 @@ namespace WpfGame
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
         public void HandleCommandLeave(Whose w, Square s)
         {
             if (w != Owner || Location != s)
@@ -36,7 +35,22 @@ namespace WpfGame
             Location = board.getNextLocation(this, PathCrossed);
         }
         public int PathCrossed { get; private set; } = 0;
-        public bool WholePathCrossed { get; set; }  = false;
+        private bool wholePathCrossed = false;
+        public bool WholePathCrossed
+        {
+            get
+            {
+                return wholePathCrossed;
+            }
+            set
+            {
+                if (value != wholePathCrossed)
+                {
+                    wholePathCrossed = value;
+                    NotifyPropertyChanged("WholePathCrossed");
+                }
+            }
+        }
         public Whose Owner { get; private set; }
         private Player player;
         private Square location;

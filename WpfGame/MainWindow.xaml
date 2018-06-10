@@ -11,7 +11,7 @@
         <local:WindowToBoardConverter x:Key="windowToBoard"/>
         <local:SquareToRadiusConverter x:Key="squareToRadius"/>
         <Style x:Key="ChangeOpacityOnMouseOverStyle" TargetType="{x:Type Ellipse}">
-            <Setter Property="Opacity" Value="0.5" />
+            <Setter Property="Opacity" Value="0.8" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Trigger.EnterActions>
@@ -46,11 +46,10 @@
 
         <Menu Grid.Row="0" Grid.Column="0">
             <MenuItem Header="_Game">
-                <MenuItem Header="_New" />
-                <MenuItem Header="_Open" Click="_Open" />
-                <MenuItem Header="_Save" />
+                <MenuItem Header="_New" Click="_New" />
+                <MenuItem Header="_Settings" Click="_Settings" />
                 <Separator />
-                <MenuItem Header="_Exit" />
+                <MenuItem Header="_Exit" Click="_Exit"/>
             </MenuItem>
         </Menu>
 
@@ -71,7 +70,7 @@
 
 
             <ItemsControl Grid.Row="0" Grid.Column="0" 
-                x:Name="board" Grid.IsSharedSizeScope="True">
+                x:Name="board" Grid.IsSharedSizeScope="True" >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Grid VerticalAlignment="Center" x:Name="theBoard">
@@ -113,7 +112,7 @@
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type local:PieceVM}">
                         <Ellipse Margin="0" StrokeThickness="1"
-                                   x:Name="self"
+                                   x:Name="self" Cursor="Hand"
                                    Height="{Binding ActualWidth, ElementName=self, Mode=OneWay}"
                                    Width="{Binding ActualWidth, ElementName=theBoard, Mode=OneWay,
                                         Converter={StaticResource squareToRadius}}"
@@ -159,7 +158,7 @@
                     <Viewbox.LayoutTransform>
                         <ScaleTransform ScaleX="1" />
                     </Viewbox.LayoutTransform>
-                    <TextBlock Text="{Binding WhoseTurnText}"  
+                    <TextBlock Text="{Binding WhoseTurnText}" Foreground="{Binding Textcolor}"
                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 </Viewbox>
 
@@ -167,7 +166,7 @@
 
 
                 <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="3"
-                      Background="CornflowerBlue"
+                      Background="CornflowerBlue"  Cursor="Hand"
                       x:Name="diceButton">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -186,7 +185,8 @@
                         <TextBlock Text="{Binding InfoWhatToDo}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </Viewbox>
 
-                    <ItemsControl x:Name="dice" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                    <ItemsControl x:Name="dice" Grid.Row="0" Grid.Column="0" 
+                                  Grid.RowSpan="3">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <Grid>

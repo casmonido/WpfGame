@@ -22,7 +22,6 @@ namespace WpfGame
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
         private int x;
         public int X
         {
@@ -55,7 +54,22 @@ namespace WpfGame
                 }
             }
         }
-        public String Color { get; private set; }
+        private string color = "";
+        public string Color
+        {
+            get
+            {
+                return color;
+            }
+            private set
+            {
+                if (!color.Equals(value))
+                {
+                    color = value;
+                    NotifyPropertyChanged("Color");
+                }
+            }
+        }
         private Piece model;
 
         public PieceVM(Piece p, int pos)
@@ -63,8 +77,16 @@ namespace WpfGame
             model = p;
             p.PropertyChanged += (sender, e) =>
             {
+                if (!e.PropertyName.Equals("Location"))
+                    return;
                 X = p.Location.X;
                 Y = p.Location.Y;
+            };
+            p.PropertyChanged += (sender, e) =>
+            {
+                if (!e.PropertyName.Equals("WholePathCrossed") || !model.WholePathCrossed)
+                    return;
+                Color = "Red";
             };
             X = p.Location.X;
             Y = p.Location.Y;

@@ -11,7 +11,27 @@ namespace WpfGame
     {
         private static string YOUR_TURN = "Your turn";
         private static string OTHERS_TURN = "Computer's turn";
+        private static string YOU_WON = "You won";
+        private static string OTHER_WON = "Computer won!";
+        public BoardVM BoardVM { get; private set; }
+        public DiceVM DiceVM { get; private set; }
         public event PropertyChangedEventHandler PropertyChanged;
+        private string textolor = "White";
+        public string Textcolor
+        {
+            get
+            {
+                return textolor;
+            }
+            set
+            {
+                if (!textolor.Equals(value))
+                {
+                    textolor = value;
+                    NotifyPropertyChanged("Textcolor");
+                }
+            }
+        }
         private void NotifyPropertyChanged(String propertyName = "")
         {
             if (PropertyChanged != null)
@@ -39,6 +59,8 @@ namespace WpfGame
         public GameVM(Game g)
         {
             model = g;
+            BoardVM = new BoardVM(model.Board, model.Player.Pieces, model.Computer.Pieces);
+            DiceVM = new DiceVM(model.Dice, model);
             model.PropertyChanged += (sender, e) =>
             {
                 if (!e.PropertyName.Equals("Turn"))
@@ -48,6 +70,18 @@ namespace WpfGame
                 else
                     WhoseTurnText = YOUR_TURN;
                 return;
+            };
+            model.PropertyChanged += (sender, e) =>
+            {
+                if (!e.PropertyName.Equals("GameWon"))
+                    return;
+                if (!model.GameWon)
+                    return;
+                if (model.WhoWon == Whose.computers)
+                    WhoseTurnText = OTHER_WON;
+                else
+                    WhoseTurnText = YOU_WON;
+                Textcolor = "Red";
             };
         }
     }

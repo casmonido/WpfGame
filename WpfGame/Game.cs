@@ -11,6 +11,22 @@ namespace WpfGame
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private bool gameWon = false;
+        public bool GameWon
+        {
+            get
+            {
+                return gameWon;
+            }
+            set
+            {
+                if (gameWon != value)
+                {
+                    gameWon = value;
+                    NotifyPropertyChanged("GameWon");
+                }
+            }
+        }
+        public Whose WhoWon = Whose.nobodys;
         private void NotifyPropertyChanged(String propertyName = "")
         {
             if (PropertyChanged != null)
@@ -65,7 +81,7 @@ namespace WpfGame
 
         public void changeTurn()
         {
-            if (gameWon)
+            if (GameWon)
                 return;
             Turn = Turn == Whose.players ? Whose.computers : Whose.players;
             Rolled = false;
@@ -73,7 +89,8 @@ namespace WpfGame
 
         public void setGameWon(Whose whoWon)
         {
-            gameWon = true;
+            WhoWon = whoWon;
+            GameWon = true;
         }
     }
 }
