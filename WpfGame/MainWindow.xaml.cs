@@ -35,11 +35,9 @@ namespace WpfGame
 
         public void _Settings(object sender, RoutedEventArgs e)
         {
-            string messageBoxText = "----";
-            string caption = "Settings";
-            MessageBoxButton button = MessageBoxButton.YesNoCancel;
-            MessageBoxImage icon = MessageBoxImage.Warning;
-            MessageBox.Show(messageBoxText, caption, button, icon);
+            SettingsWindow win = new SettingsWindow();
+            win.Owner = this;
+            win.Show();
         }
 
         public void _New(object sender, RoutedEventArgs e)
