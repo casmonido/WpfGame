@@ -32,11 +32,11 @@ namespace WpfGame
         {
             if (w != Owner || Location != s)
                 return;
-            pathCrossed = 0;
-            Location = board.getNextLocation(this, pathCrossed);
+            PathCrossed = 0;
+            Location = board.getNextLocation(this, PathCrossed);
         }
-        private int pathCrossed = 0;
-        public bool WholePathCrossed { get; private set; }  = false;
+        public int PathCrossed { get; private set; } = 0;
+        public bool WholePathCrossed { get; set; }  = false;
         public Whose Owner { get; private set; }
         private Player player;
         private Square location;
@@ -74,16 +74,16 @@ namespace WpfGame
         public void move(int howMuch)
         {
             Location.leave(this);
-            Square scr = board.getNextLocation(this, pathCrossed + howMuch);
+            Square scr = board.getNextLocation(this, PathCrossed + howMuch);
             if (scr.tryAndOccupy(this) == OccupyResponses.OK)
             {
                 Location = scr;
-                pathCrossed += howMuch;
+                PathCrossed += howMuch;
             }
         }
     }
     public enum OccupyResponses
     {
-        OK, ONE_MORE_HOP
+        OK, NOT_OK
     }
 }

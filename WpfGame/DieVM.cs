@@ -27,16 +27,16 @@ namespace WpfGame
             model = d;
             d.PropertyChanged += (sender, e) =>
             {
-                ImgSrc = model.getRolledNum() == 0 ? IMG_DOWN : IMG_UP;
+                ImgSrc = model.RolledNum == 0 ? IMG_DOWN : IMG_UP;
                 NotifyPropertyChanged("ImgSrc");
             };
-            ImgSrc = d.getRolledNum() == 0 ? IMG_DOWN : IMG_UP;
+            ImgSrc = d.RolledNum == 0 ? IMG_DOWN : IMG_UP;
             Lp = lp;
         }
 
         void changeItemOnClick(object sender, EventArgs e)
         {
-            ImgSrc = model.getRolledNum() == 0 ? IMG_DOWN : IMG_UP;
+            ImgSrc = model.RolledNum == 0 ? IMG_DOWN : IMG_UP;
             NotifyPropertyChanged("ImgSrc");
         }
     }

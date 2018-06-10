@@ -23,12 +23,12 @@ namespace WpfGame
         new public int Roll()
         {
             if (game.Rolled)
-                return rolledNum;
+                return RolledNum;
             game.Rolled = true;
-            rolledNum = 0;
+            RolledNum = 0;
             for (int i = 0; i < dice.Count; ++i)
-                rolledNum += dice[i].Roll();
-            return rolledNum;
+                RolledNum += dice[i].Roll();
+            return RolledNum;
         }
     }
 }

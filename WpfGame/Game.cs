@@ -10,6 +10,7 @@ namespace WpfGame
     public class Game : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        private bool gameWon = false;
         private void NotifyPropertyChanged(String propertyName = "")
         {
             if (PropertyChanged != null)
@@ -30,7 +31,7 @@ namespace WpfGame
             }
             set
             {
-                if (turn != value)
+                if (turn != value && !gameWon)
                 {
                     turn = value;
                     NotifyPropertyChanged("Turn");
@@ -45,7 +46,7 @@ namespace WpfGame
             }
             set
             {
-                if (rolled != value)
+                if (rolled != value && !gameWon)
                 {
                     rolled = value;
                     NotifyPropertyChanged("Rolled");
@@ -64,8 +65,15 @@ namespace WpfGame
 
         public void changeTurn()
         {
+            if (gameWon)
+                return;
             Turn = Turn == Whose.players ? Whose.computers : Whose.players;
             Rolled = false;
+        }
+
+        public void setGameWon(Whose whoWon)
+        {
+            gameWon = true;
         }
     }
 }

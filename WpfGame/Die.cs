@@ -17,18 +17,14 @@ namespace WpfGame
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        public int rolledNum = 0; 
-        protected Random random = new Random(Guid.NewGuid().GetHashCode());
+        public int RolledNum { get; protected set; } = 0;
+        private Random random = new Random(Guid.NewGuid().GetHashCode());
+
         public int Roll()
         {
-            rolledNum = random.Next(0, 2);
+            RolledNum = random.Next(0, 2);
             NotifyPropertyChanged("rolledNum");
-            return rolledNum;
-        }
-
-        public int getRolledNum()
-        {
-            return rolledNum;
+            return RolledNum;
         }
     }
 }

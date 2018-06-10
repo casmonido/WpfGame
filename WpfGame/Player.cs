@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace WpfGame
 {
@@ -13,7 +14,31 @@ namespace WpfGame
         public ObservableCollection<Piece> Pieces { get; private set; }
         private Game game;
         private Whose who;
+        private int score = 0;
         private Random rand = new Random();
+
+        private DispatcherTimer timer = new DispatcherTimer();
+
+
+        private void rollOnTick(object sender, EventArgs e)
+        {
+            game.Dice.Roll();
+            timer.Tick -= rollOnTick;
+            timer.Tick += moveOnTick;
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Start();
+        }
+
+        private void moveOnTick(object sender, EventArgs e)
+        {
+            timer.Tick -= moveOnTick;
+            int i;
+            do
+            {
+                i = rand.Next(0, NUM_PIECES);
+            } while (Pieces[i].WholePathCrossed);
+            move(Pieces[i]);
+        }
 
         public Player(Whose w, Board boardModel, Game g)
         {
@@ -26,17 +51,12 @@ namespace WpfGame
             if (who == Whose.computers)
                 game.PropertyChanged += (sender, e) =>
                 {
-                    if (!e.PropertyName.Equals("Turn"))
+                    if (!e.PropertyName.Equals("Turn") ||
+                        game.Turn != Whose.computers)
                         return;
-                    if (game.Turn != Whose.computers)
-                        return;
-                    game.Dice.Roll();
-                    int i;
-                    do
-                    {
-                        i = rand.Next(0, NUM_PIECES);
-                    } while (Pieces[i].WholePathCrossed);
-                    move(Pieces[i]);
+                    timer.Tick += rollOnTick;
+                    timer.Interval = new TimeSpan(0, 0, 1);
+                    timer.Start();
                 };
         }
 
@@ -44,7 +64,14 @@ namespace WpfGame
         {
             if (game.Turn != who || !game.Rolled)
                 return;
-            p.move(game.Dice.rolledNum);
+            p.move(game.Dice.RolledNum);
+            if (p.PathCrossed > Board.PATH_LEN)
+            {
+                p.WholePathCrossed = true;
+                score++;
+                if (score == NUM_PIECES)
+                    game.setGameWon(this.who);
+            }
             game.changeTurn();
         }
     }

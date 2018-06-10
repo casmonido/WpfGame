@@ -17,7 +17,7 @@ namespace WpfGame
         public OccupyResponses tryAndOccupy(Piece p)
         {
             if (whose != Whose.nobodys && whose == p.Owner)
-                return OccupyResponses.ONE_MORE_HOP; //ew info żeby spróbował o 1 dalej
+                return OccupyResponses.NOT_OK;
             if (CommandLeave != null)
                 CommandLeave(whose, this);
             CommandLeave += p.HandleCommandLeave;
