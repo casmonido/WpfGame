@@ -27,7 +27,6 @@ namespace WpfGame
         {
             if (game.Rolled)
                 return RolledNum;
-            game.Rolled = true;
             RolledNum = 0;
             for (int i = 0; i < dice.Count; ++i)
                 RolledNum += dice[i].Roll();
@@ -37,11 +36,13 @@ namespace WpfGame
                 timer.Interval = new TimeSpan(0, 0, 1);
                 timer.Start();
             }
+            game.Rolled = true;
             return RolledNum;
         }
 
         private void changeRoundOnTick(object sender, EventArgs e)
         {
+            timer.Tick -= changeRoundOnTick;
             game.changeTurn();
         }
     }

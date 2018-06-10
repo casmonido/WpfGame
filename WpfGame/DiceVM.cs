@@ -55,7 +55,12 @@ namespace WpfGame
                 else
                 {
                     if (game.Rolled)
-                        InfoWhatToDo = MOVE_PIECE;
+                    {
+                        if (game.Dice.RolledNum == 0)
+                            InfoWhatToDo = ROLLED_ZERO;
+                        else
+                            InfoWhatToDo = MOVE_PIECE;
+                    }
                     else
                         InfoWhatToDo = ROLL;
                 }
@@ -67,5 +72,6 @@ namespace WpfGame
         public static string COMPUERS_MOVE = "Computer's move ....";
         public static string MOVE_PIECE = "Click on one of your pieces to move";
         public static string ROLL = "Roll";
+        public static string ROLLED_ZERO = "You rolled zero. Too bad!";
     }
 }

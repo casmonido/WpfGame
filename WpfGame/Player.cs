@@ -22,10 +22,9 @@ namespace WpfGame
 
         private void rollOnTick(object sender, EventArgs e)
         {
-            game.Dice.Roll();
-            if (game.Dice.RolledNum == 0)
-                return;
             timer.Tick -= rollOnTick;
+            if (game.Dice.Roll() == 0)
+                return;
             timer.Tick += moveOnTick;
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
