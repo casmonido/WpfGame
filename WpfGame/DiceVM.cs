@@ -19,7 +19,22 @@ namespace WpfGame
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        public String InfoWhatToDo { get; private set; }  = "Roll!";
+        private string infoWhatToDo = "Roll!";
+        public string InfoWhatToDo
+        {
+            get
+            {
+                return infoWhatToDo;
+            }
+            private set
+            {
+                if (!infoWhatToDo.Equals(value))
+                {
+                    infoWhatToDo = value;
+                    NotifyPropertyChanged("InfoWhatToDo");
+                }
+            }
+        }
         Dice model;
         public List<DieVM> dice = new List<DieVM>();
 
@@ -36,20 +51,21 @@ namespace WpfGame
                 if (!e.PropertyName.Equals("Rolled"))
                     return;
                 if (game.Turn == Whose.computers)
-                {
-                    InfoWhatToDo = "Computer's move ....";
-                    NotifyPropertyChanged("InfoWhatToDo");
-                    return;
-                }
-                if (game.Rolled)
-                    InfoWhatToDo = "Click on one of your pieces to move";
+                    InfoWhatToDo = COMPUERS_MOVE;
                 else
-                    InfoWhatToDo = "Roll";
-                NotifyPropertyChanged("InfoWhatToDo");
+                {
+                    if (game.Rolled)
+                        InfoWhatToDo = MOVE_PIECE;
+                    else
+                        InfoWhatToDo = ROLL;
+                }
             };
             RollOnClick = new ExecuteAction(messageTarget);
         }
 
         public ExecuteAction RollOnClick { get; set; }
+        public static string COMPUERS_MOVE = "Computer's move ....";
+        public static string MOVE_PIECE = "Click on one of your pieces to move";
+        public static string ROLL = "Roll";
     }
 }

@@ -8,8 +8,6 @@ namespace WpfGame
 {
     public class StartingSquare: Square
     {
-        public event Action<Whose, Square> CommandLeave;
-
         public StartingSquare(int tx, int ty, String img): base(tx, ty, img)
         {}
     }

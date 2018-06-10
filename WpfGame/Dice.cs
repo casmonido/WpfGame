@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace WpfGame
 {
@@ -12,6 +13,8 @@ namespace WpfGame
         private static int DIE_NUM = 4;
         private Game game;
         public List<Die> dice = new List<Die>();
+
+        private DispatcherTimer timer = new DispatcherTimer();
 
         public Dice(Game g)
         {
@@ -28,7 +31,18 @@ namespace WpfGame
             RolledNum = 0;
             for (int i = 0; i < dice.Count; ++i)
                 RolledNum += dice[i].Roll();
+            if (RolledNum == 0)
+            {
+                timer.Tick += changeRoundOnTick;
+                timer.Interval = new TimeSpan(0, 0, 1);
+                timer.Start();
+            }
             return RolledNum;
+        }
+
+        private void changeRoundOnTick(object sender, EventArgs e)
+        {
+            game.changeTurn();
         }
     }
 }

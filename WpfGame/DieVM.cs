@@ -19,7 +19,22 @@ namespace WpfGame
         }
         private static string IMG_UP = "/img/diceup.gif";
         private static string IMG_DOWN = "/img/dicedown.gif";
-        public String ImgSrc { get; private set; }
+        private string imgSrc = IMG_DOWN;
+        public string ImgSrc
+        {
+            get
+            {
+                return imgSrc;
+            }
+            private set
+            {
+                if (!imgSrc.Equals(value))
+                {
+                    imgSrc = value;
+                    NotifyPropertyChanged("ImgSrc");
+                }
+            }
+        }
         public int Lp { get; private set; }
         private Die model;
         public DieVM(Die d, int lp)
@@ -28,16 +43,9 @@ namespace WpfGame
             d.PropertyChanged += (sender, e) =>
             {
                 ImgSrc = model.RolledNum == 0 ? IMG_DOWN : IMG_UP;
-                NotifyPropertyChanged("ImgSrc");
             };
             ImgSrc = d.RolledNum == 0 ? IMG_DOWN : IMG_UP;
             Lp = lp;
-        }
-
-        void changeItemOnClick(object sender, EventArgs e)
-        {
-            ImgSrc = model.RolledNum == 0 ? IMG_DOWN : IMG_UP;
-            NotifyPropertyChanged("ImgSrc");
         }
     }
 }

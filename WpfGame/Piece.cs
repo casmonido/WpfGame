@@ -47,7 +47,7 @@ namespace WpfGame
             }
             private set
             {
-                if (location != value)
+                if (!location.Equals(value))
                 {
                     location = value;
                     NotifyPropertyChanged("Location");
@@ -62,7 +62,7 @@ namespace WpfGame
             player = p;
             Owner = o;
             startingSquare = initialLoc;
-            Location = initialLoc;
+            location = initialLoc;
             board = b;
         }
 
@@ -73,11 +73,13 @@ namespace WpfGame
 
         public OccupyResponses move(int howMuch)
         {
-            Location.leave(this);
+            if (howMuch == 0)
+                return OccupyResponses.OK;
             Square scr = board.getNextLocation(this, PathCrossed + howMuch);
             OccupyResponses response = scr.tryAndOccupy(this);
             if (response == OccupyResponses.OK)
             {
+                Location.leave(this);
                 Location = scr;
                 PathCrossed += howMuch;
             }

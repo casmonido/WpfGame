@@ -29,7 +29,7 @@ namespace WpfGame
             }
             set
             {
-                if (whoseTurnText != value)
+                if (whoseTurnText.Equals(value))
                 {
                     whoseTurnText = value;
                     NotifyPropertyChanged("WhoseTurnText");
@@ -47,7 +47,6 @@ namespace WpfGame
                     WhoseTurnText = OTHERS_TURN;
                 else
                     WhoseTurnText = YOUR_TURN;
-                NotifyPropertyChanged("WhoseTurnText");
                 return;
             };
         }
