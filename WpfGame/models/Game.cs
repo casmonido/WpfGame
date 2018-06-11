@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfGame
+namespace WpfGame.models
 {
     public class Game : INotifyPropertyChanged
     {

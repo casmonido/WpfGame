@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using WpfGame.models;
 
-namespace WpfGame
+namespace WpfGame.viewmodels
 {
     public class SquareVM
     {

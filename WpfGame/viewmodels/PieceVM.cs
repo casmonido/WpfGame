@@ -9,8 +9,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
+using WpfGame.models;
 
-namespace WpfGame
+namespace WpfGame.viewmodels
 {
     public class PieceVM : INotifyPropertyChanged
     {

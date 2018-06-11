@@ -10,7 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
 
-namespace WpfGame
+namespace WpfGame.models
 {
     public enum Whose
     {
@@ -68,10 +68,10 @@ namespace WpfGame
                 }
             }    
         }
-        public StartingSquare startingSquare;
+        public Square startingSquare;
         private Board board;
 
-        public Piece(Whose o, Board b, StartingSquare initialLoc, Player p)
+        public Piece(Whose o, Board b, Square initialLoc, Player p)
         {
             player = p;
             Owner = o;

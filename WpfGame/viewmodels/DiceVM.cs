@@ -6,8 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using WpfGame.models;
 
-namespace WpfGame
+namespace WpfGame.viewmodels
 {
     public class DiceVM : INotifyPropertyChanged
     {
@@ -35,14 +36,14 @@ namespace WpfGame
                 }
             }
         }
-        Dice model;
-        public List<DieVM> dice = new List<DieVM>();
-
+        private Dice model;
+        public List<DieVM> Dice { get; set; } = new List<DieVM>();
+        //public CompositeCollection Dice { get; set; } = new CompositeCollection();
         public DiceVM(Dice d, Game game)
         {
             model = d;
             for (int i = 0; i < d.dice.Count; ++i)
-                dice.Add(new DieVM(d.dice[i], i));
+                Dice.Add(new DieVM(d.dice[i], i));
             Action<object> messageTarget = delegate (object s) {
                 model.Roll();
             };

@@ -5,230 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfGame"
         xmlns:views="clr-namespace:WpfGame.views"
+        xmlns:viewmodels="clr-namespace:WpfGame.viewmodels"
         mc:Ignorable="d"
         Title="The royal game of Ur" Height="500" Width="1000" MinHeight="250" MinWidth="500" 
         x:Name="ParentWindow">
     <Window.Resources>
-        <DataTemplate DataType="x:Type SettingsVM">
+        <DataTemplate x:Name="settingsVM" DataType="{x:Type viewmodels:SettingsVM}">
             <views:SettingsView DataContext="{Binding}"/>
         </DataTemplate>
-        <local:WindowToBoardConverter x:Key="windowToBoard"/>
-        <local:SquareToRadiusConverter x:Key="squareToRadius"/>
-        <Style x:Key="ChangeOpacityOnMouseOverStyle" TargetType="{x:Type Ellipse}">
-            <Setter Property="Opacity" Value="0.8" />
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Trigger.EnterActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                  To="1" Duration="0:0:1" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.EnterActions>
-                    <Trigger.ExitActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                  To="0.7" Duration="0:0:1" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.ExitActions>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+        <DataTemplate x:Name="gameVM" DataType="{x:Type viewmodels:GameVM}">
+            <views:GameView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid Background="{Binding BackColor}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Menu Grid.Row="0" Grid.Column="0">
-            <MenuItem Header="_Game">
-                <MenuItem Header="_New" Click="_New" />
-                <MenuItem Header="_Settings" Click="_Settings" />
-                <Separator />
-                <MenuItem Header="_Exit" Click="_Exit"/>
-            </MenuItem>
-        </Menu>
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7"/>
+        <MenuItem Header="_Game">
+            <MenuItem Header="_New" Click="_New" />
+            <MenuItem Header="_Settings" Click="_Settings" />
+            <Separator />
+            <MenuItem Header="_Exit" Click="_Exit"/>
+        </MenuItem>
 
-        <Grid Grid.Row="1" Grid.Column="0"
-            Width="{Binding ActualWidth, ElementName=ParentWindow, Mode=OneWay, 
-            Converter={StaticResource windowToBoard}}"
-            HorizontalAlignment="Center"  VerticalAlignment="Center">
+        <DockPanel Grid.Row="1" Grid.Column="0" Background="AntiqueWhite" >
+            <StackPanel>
+                <Button Click="_SettingsView">Settings view</Button>
+                <Button Click="_GameView">Game view</Button>
+            </StackPanel>
+        </DockPanel>
 
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-
-
-            <ItemsControl Grid.Row="0" Grid.Column="0" 
-                x:Name="board" Grid.IsSharedSizeScope="True" >
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Grid VerticalAlignment="Center" x:Name="theBoard">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" SharedSizeGroup="RowSize"/>
-                                <RowDefinition Height="Auto" SharedSizeGroup="RowSize"/>
-                                <RowDefinition Height="Auto" SharedSizeGroup="RowSize"/>
-                                <RowDefinition Height="Auto" SharedSizeGroup="RowSize"/>
-                                <RowDefinition Height="Auto" SharedSizeGroup="RowSize"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                        </Grid>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemContainerStyle>
-                    <Style TargetType="ContentPresenter">
-                        <Setter Property="Grid.Row" Value="{Binding Y, Mode=OneWay}"/>
-                        <Setter Property="Grid.Column" Value="{Binding X, Mode=OneWay}"/>
-                    </Style>
-                </ItemsControl.ItemContainerStyle>
-                <ItemsControl.Resources>
-                    <DataTemplate DataType="{x:Type local:SquareVM}">
-                        <Image Margin="0" 
-                               Source="{Binding ImgSrc}"/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:StartingSquareVM}">
-                        <Rectangle x:Name="self"
-                                   Fill="Transparent"
-                                   Margin="0"/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:PieceVM}">
-                        <Ellipse Margin="0" StrokeThickness="1"
-                                   x:Name="self" Cursor="Hand"
-                                   Height="{Binding ActualWidth, ElementName=self, Mode=OneWay}"
-                                   Width="{Binding ActualWidth, ElementName=theBoard, Mode=OneWay,
-                                        Converter={StaticResource squareToRadius}}"
-                                   Fill="{Binding Color}"
-                                 Style="{StaticResource ChangeOpacityOnMouseOverStyle}">
-                            <Ellipse.RenderTransform>
-                                <TranslateTransform />
-                            </Ellipse.RenderTransform>
-                            <Ellipse.Stroke>
-                                <SolidColorBrush Color="DarkGray"/>
-                            </Ellipse.Stroke>
-                            <Ellipse.InputBindings>
-                                <MouseBinding 
-                                    Gesture="LeftClick"
-                                    Command="{Binding MoveOnClick}"/>
-                            </Ellipse.InputBindings>
-                        </Ellipse>
-                    </DataTemplate>
-                </ItemsControl.Resources>
-            </ItemsControl>
-
-
-
-
-
-
-
-
-            <Grid Grid.Row="0" Grid.Column="1" Margin="50 0 0 0">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-
-                <Viewbox Grid.Row="0" Grid.Column="0" >
-                    <Viewbox.LayoutTransform>
-                        <ScaleTransform ScaleX="1" />
-                    </Viewbox.LayoutTransform>
-                    <TextBlock Text="{Binding WhoseTurnText}" Foreground="{Binding Textcolor}"
-                               HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                </Viewbox>
-
-
-
-
-                <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="3"
-                      Background="{Binding FrontColor}"  Cursor="Hand"
-                      x:Name="diceButton">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Viewbox Grid.Row="3" Grid.Column="0" >
-                        <Viewbox.LayoutTransform>
-                            <ScaleTransform ScaleX="0.5" ScaleY="0.5" />
-                        </Viewbox.LayoutTransform>
-                        <TextBlock Text="{Binding InfoWhatToDo}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    </Viewbox>
-
-                    <ItemsControl x:Name="dice" Grid.Row="0" Grid.Column="0" 
-                                  Grid.RowSpan="3">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                </Grid>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemContainerStyle>
-                            <Style TargetType="ContentPresenter">
-                                <Setter Property="Grid.Row" Value="0"/>
-                                <Setter Property="Grid.Column" Value="{Binding Lp, Mode=OneWay}"/>
-                            </Style>
-                        </ItemsControl.ItemContainerStyle>
-                        <ItemsControl.Resources>
-                            <DataTemplate DataType="{x:Type local:DieVM}">
-                                <Image Margin="10" 
-                                   Source="{Binding ImgSrc}">
-                                </Image>
-                            </DataTemplate>
-                        </ItemsControl.Resources>
-                    </ItemsControl>
-
-                    <Grid.InputBindings>
-                        <MouseBinding 
-                                        Gesture="LeftClick"
-                                        Command="{Binding RollOnClick}"/>
-                    </Grid.InputBindings>
-
-                </Grid>
-            </Grid>
-        </Grid>
+        <ContentControl Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" Content="{Binding}"/>
     </Grid>
 </Window>

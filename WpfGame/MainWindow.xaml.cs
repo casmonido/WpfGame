@@ -14,7 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static WpfGame.Square;
+using WpfGame.viewmodels;
+using WpfGame.views;
 
 namespace WpfGame
 {
@@ -23,32 +24,37 @@ namespace WpfGame
     /// </summary>
     public partial class MainWindow : Window
     {
-        private GameVM gameVM;
         private App app;
+        private GameVM gameVM;
 
         public MainWindow(App ap)
         {
             app = ap;
             InitializeComponent();
             gameVM = new GameVM(app.createModel());
-            this.DataContext = gameVM;
-            board.ItemsSource = gameVM.BoardVM.compositeCollection;
-            dice.ItemsSource = gameVM.DiceVM.dice;
-            diceButton.DataContext = gameVM.DiceVM;
+            DataContext = gameVM;
         }
 
         public void _Settings(object sender, RoutedEventArgs e)
         {
             SettingsWindow win = new SettingsWindow();
             win.Owner = this;
-            // Owned windows that were not opened using ShowDialog are not modal. 
-            // The user can still interact with the owner window.
             win.ShowDialog();
             if (win.Result == MessageBoxResult.Yes)
             {
                 gameVM.setColors(win.BackColor);
                 gameVM.DiceVM.setColors(win.FrontColor);
             }
+        }
+
+        public void _SettingsView(object sender, RoutedEventArgs e)
+        {
+            DataContext = new SettingsVM();
+        }
+
+        public void _GameView(object sender, RoutedEventArgs e)
+        {
+            DataContext = gameVM;
         }
 
         public void _New(object sender, RoutedEventArgs e)
@@ -58,13 +64,7 @@ namespace WpfGame
             MessageBoxResult result = MessageBox.Show(messageBoxText, caption,
                 MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
-            {
-                GameVM gameVM = new GameVM(app.createModel()); // app powinien to stworzyć 
-                this.DataContext = gameVM;
-                board.ItemsSource = gameVM.BoardVM.compositeCollection;
-                dice.ItemsSource = gameVM.DiceVM.dice;
-                diceButton.DataContext = gameVM.DiceVM;
-            }
+                gameVM = new GameVM(app.createModel());
         }
 
         public void _Exit(object sender, RoutedEventArgs e)

@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using WpfGame.models;
 
-namespace WpfGame
+namespace WpfGame.viewmodels
 {
     public class GameVM : INotifyPropertyChanged
     {

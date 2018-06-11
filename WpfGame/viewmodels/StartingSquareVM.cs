@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfGame.models;
 
-namespace WpfGame
+namespace WpfGame.viewmodels
 {
     public class StartingSquareVM: SquareVM
     {
-        public StartingSquareVM(StartingSquare s): base(s)
+        public StartingSquareVM(Square s): base(s)
         {
         }
     }

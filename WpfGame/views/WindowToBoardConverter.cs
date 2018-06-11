@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace WpfGame
+namespace WpfGame.views
 {
     public class WindowToBoardConverter: IValueConverter
     {
         public object Convert(object value, Type targetType,
         object parameter, CultureInfo culture)
         {
-            return ((double)value) * 0.9;
+            return ((double)value) * 0.8;
         }
 
         public object ConvertBack(object value, Type targetType,
