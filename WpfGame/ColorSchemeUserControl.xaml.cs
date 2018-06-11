@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,15 @@ namespace WpfGame
     /// </summary>
     public partial class ColorSchemeUserControl : UserControl
     {
+        ObservableCollection<ColorScheme> colorSchemes = new ObservableCollection<ColorScheme>();
+
         public ColorSchemeUserControl()
         {
             InitializeComponent();
+            colorSchemes.Add(new ColorScheme("Aquamarine", "CornflowerBlue"));
+            colorSchemes.Add(new ColorScheme("Coral", "BlanchedAlmond"));
+            colorList.ItemsSource = colorSchemes;
         }
+
     }
 }

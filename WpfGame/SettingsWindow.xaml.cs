@@ -19,9 +19,28 @@ namespace WpfGame
     /// </summary>
     public partial class SettingsWindow : Window
     {
+        public string BackColor { get; private set; } = "Blue";
+        public string FrontColor { get; private set; } = "White";
+        public MessageBoxResult Result { get; private set; } = MessageBoxResult.Cancel;
+
         public SettingsWindow()
         {
             InitializeComponent();
+        }
+
+        public void _Accept(object sender, RoutedEventArgs e)
+        {
+            Result = MessageBoxResult.Yes;
+            ColorScheme cs = (ColorScheme) colorPicker.colorList.SelectedItem;
+            BackColor = cs.BackColor;
+            FrontColor = cs.FrontColor;
+            this.Hide();
+        }
+
+        public void _Cancel(object sender, RoutedEventArgs e)
+        {
+            Result = MessageBoxResult.Cancel;
+            this.Hide();
         }
     }
 }

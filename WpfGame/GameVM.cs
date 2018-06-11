@@ -9,6 +9,22 @@ namespace WpfGame
 {
     public class GameVM : INotifyPropertyChanged
     {
+        private string backColor = "Pink";
+        public string BackColor
+        {
+            get
+            {
+                return backColor;
+            }
+            private set
+            {
+                if (backColor != value)
+                {
+                    backColor = value;
+                    NotifyPropertyChanged("BackColor");
+                }
+            }
+        }
         private static string YOUR_TURN = "Your turn";
         private static string OTHERS_TURN = "Computer's turn";
         private static string YOU_WON = "You won";
@@ -55,6 +71,10 @@ namespace WpfGame
                     NotifyPropertyChanged("WhoseTurnText");
                 }
             }
+        }
+        public void setColors(string backColor)
+        {
+            BackColor = backColor;
         }
         public GameVM(Game g)
         {

@@ -23,10 +23,14 @@ namespace WpfGame
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(Game game)
+        private GameVM gameVM;
+        private App app;
+
+        public MainWindow(App ap)
         {
+            app = ap;
             InitializeComponent();
-            GameVM gameVM = new GameVM(game);
+            gameVM = new GameVM(app.createModel());
             this.DataContext = gameVM;
             board.ItemsSource = gameVM.BoardVM.compositeCollection;
             dice.ItemsSource = gameVM.DiceVM.dice;
@@ -37,7 +41,14 @@ namespace WpfGame
         {
             SettingsWindow win = new SettingsWindow();
             win.Owner = this;
-            win.Show();
+            // Owned windows that were not opened using ShowDialog are not modal. 
+            // The user can still interact with the owner window.
+            win.ShowDialog();
+            if (win.Result == MessageBoxResult.Yes)
+            {
+                gameVM.setColors(win.BackColor);
+                gameVM.DiceVM.setColors(win.FrontColor);
+            }
         }
 
         public void _New(object sender, RoutedEventArgs e)
@@ -48,7 +59,7 @@ namespace WpfGame
                 MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                GameVM gameVM = new GameVM(new Game()); // app powinien to stworzyć 
+                GameVM gameVM = new GameVM(app.createModel()); // app powinien to stworzyć 
                 this.DataContext = gameVM;
                 board.ItemsSource = gameVM.BoardVM.compositeCollection;
                 dice.ItemsSource = gameVM.DiceVM.dice;

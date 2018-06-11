@@ -35,7 +35,7 @@
         </Style>
     </Window.Resources>
 
-    <Grid Background="LightSteelBlue">
+    <Grid Background="{Binding BackColor}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*"/>
@@ -166,7 +166,7 @@
 
 
                 <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="3"
-                      Background="CornflowerBlue"  Cursor="Hand"
+                      Background="{Binding FrontColor}"  Cursor="Hand"
                       x:Name="diceButton">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>

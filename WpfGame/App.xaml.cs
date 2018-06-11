@@ -17,9 +17,13 @@ namespace WpfGame
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            Game game = new Game();
-            MainWindow win = new MainWindow(game);
+            MainWindow win = new MainWindow(this);
             win.Show();
+        }
+
+        public Game createModel()
+        {
+            return new Game();
         }
     }
 }

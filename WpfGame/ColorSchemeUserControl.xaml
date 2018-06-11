@@ -4,38 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfGame"
-             mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="100">
+             mc:Ignorable="d" Height="71" Width="100">
     <StackPanel Margin="10">
-        <ComboBox HorizontalAlignment="Left" Width="80">
-            <ComboBoxItem>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Rectangle Width="30" Height="30" 
-                               DockPanel.ZIndex="1" Fill="Aquamarine"/>
-                    <Rectangle Width="10" Height="10" 
-                               DockPanel.ZIndex="2" Fill="CornflowerBlue" />
-                </Grid>
-            </ComboBoxItem>
-            <ComboBoxItem IsSelected="True">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Rectangle Width="30" Height="30" 
-                               DockPanel.ZIndex="1" Fill="Coral"/>
-                    <Rectangle Width="10" Height="10" 
-                               DockPanel.ZIndex="2" Fill="BlanchedAlmond" />
-                </Grid>
-            </ComboBoxItem>
+        <ComboBox HorizontalAlignment="Left" Width="80" Name="colorList" Height="35">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Width="30" Height="30" 
+                                   DockPanel.ZIndex="1" Fill="{Binding BackColor}"/>
+                        <Rectangle Width="10" Height="10" 
+                                   DockPanel.ZIndex="2" Fill="{Binding FrontColor}" />
+                    </Grid>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
         </ComboBox>
     </StackPanel>
 </UserControl>

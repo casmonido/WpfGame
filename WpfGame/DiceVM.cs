@@ -67,7 +67,26 @@ namespace WpfGame
             };
             RollOnClick = new ExecuteAction(messageTarget);
         }
-
+        private string frontColor = "White";
+        public string FrontColor
+        {
+            get
+            {
+                return frontColor;
+            }
+            private set
+            {
+                if (frontColor != value)
+                {
+                    frontColor = value;
+                    NotifyPropertyChanged("FrontColor");
+                }
+            }
+        }
+        public void setColors(string frontColor)
+        {
+            FrontColor = frontColor;
+        }
         public ExecuteAction RollOnClick { get; set; }
         public static string COMPUERS_MOVE = "Computer's move ....";
         public static string MOVE_PIECE = "Click on one of your pieces to move";
