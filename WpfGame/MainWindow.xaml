@@ -20,7 +20,6 @@
 
     <Grid Background="{Binding BackColor}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -33,21 +32,15 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7"/>
-        <MenuItem Header="_Game">
-            <MenuItem Header="_New" Click="_New" />
-            <MenuItem Header="_Settings" Click="_Settings" />
-            <Separator />
-            <MenuItem Header="_Exit" Click="_Exit"/>
-        </MenuItem>
-
-        <DockPanel Grid.Row="1" Grid.Column="0" Background="AntiqueWhite" >
+        <DockPanel Grid.Row="0" Grid.Column="0" Background="Gray" >
             <StackPanel>
                 <Button Click="_SettingsView">Settings view</Button>
                 <Button Click="_GameView">Game view</Button>
+                <Button Click="_New">New game</Button>
+                <Button Click="_Exit">Exit</Button>
             </StackPanel>
         </DockPanel>
 
-        <ContentControl Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" Content="{Binding}"/>
+        <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" Content="{Binding}"/>
     </Grid>
 </Window>

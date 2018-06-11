@@ -35,18 +35,6 @@ namespace WpfGame
             DataContext = gameVM;
         }
 
-        public void _Settings(object sender, RoutedEventArgs e)
-        {
-            SettingsWindow win = new SettingsWindow();
-            win.Owner = this;
-            win.ShowDialog();
-            if (win.Result == MessageBoxResult.Yes)
-            {
-                gameVM.setColors(win.BackColor);
-                gameVM.DiceVM.setColors(win.FrontColor);
-            }
-        }
-
         public void _SettingsView(object sender, RoutedEventArgs e)
         {
             DataContext = new SettingsVM();

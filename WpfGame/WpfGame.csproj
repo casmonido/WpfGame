@@ -57,7 +57,7 @@
     <Compile Include="models\Board.cs" />
     <Compile Include="viewmodels\BoardVM.cs" />
     <Compile Include="ColorScheme.cs" />
-    <Compile Include="ColorSchemeUserControl.xaml.cs">
+    <Compile Include="views\ColorSchemeUserControl.xaml.cs">
       <DependentUpon>ColorSchemeUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="models\Dice.cs" />
@@ -67,9 +67,6 @@
     <Compile Include="ExecuteAction.cs" />
     <Compile Include="viewmodels\GameVM.cs" />
     <Compile Include="models\Player.cs" />
-    <Compile Include="SettingsWindow.xaml.cs">
-      <DependentUpon>SettingsWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="viewmodels\SettingsVM.cs" />
     <Compile Include="views\GameView.xaml.cs">
       <DependentUpon>GameView.xaml</DependentUpon>
@@ -84,7 +81,7 @@
     <Compile Include="viewmodels\PieceVM.cs" />
     <Compile Include="models\Square.cs" />
     <Compile Include="viewmodels\SquareVM.cs" />
-    <Page Include="ColorSchemeUserControl.xaml">
+    <Page Include="views\ColorSchemeUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -100,10 +97,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SettingsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="views\GameView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
