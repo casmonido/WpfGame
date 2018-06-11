@@ -22,13 +22,24 @@ namespace WpfGame
     public partial class ColorSchemeUserControl : UserControl
     {
         ObservableCollection<ColorScheme> colorSchemes = new ObservableCollection<ColorScheme>();
+        public ColorScheme Selected { get; set; }
 
         public ColorSchemeUserControl()
         {
             InitializeComponent();
             colorSchemes.Add(new ColorScheme("Aquamarine", "CornflowerBlue"));
-            colorSchemes.Add(new ColorScheme("Coral", "BlanchedAlmond"));
+            ColorScheme cs = new ColorScheme("Coral", "BlanchedAlmond");
+            colorSchemes.Add(cs);
+            Selected = cs;
             colorList.ItemsSource = colorSchemes;
+        }
+
+        public void setSelected(string bcolor, string fcolor)
+        {
+            ColorScheme cs = new ColorScheme(bcolor, fcolor);
+            if (!colorSchemes.Contains(cs))
+                colorSchemes.Add(cs);
+            Selected = cs;
         }
 
     }

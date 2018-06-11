@@ -54,30 +54,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Board.cs" />
-    <Compile Include="BoardVM.cs" />
+    <Compile Include="models\Board.cs" />
+    <Compile Include="viewmodels\BoardVM.cs" />
     <Compile Include="ColorScheme.cs" />
     <Compile Include="ColorSchemeUserControl.xaml.cs">
       <DependentUpon>ColorSchemeUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dice.cs" />
-    <Compile Include="DiceVM.cs" />
-    <Compile Include="Die.cs" />
-    <Compile Include="DieVM.cs" />
+    <Compile Include="models\Dice.cs" />
+    <Compile Include="viewmodels\DiceVM.cs" />
+    <Compile Include="models\Die.cs" />
+    <Compile Include="viewmodels\DieVM.cs" />
     <Compile Include="ExecuteAction.cs" />
-    <Compile Include="GameVM.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="viewmodels\GameVM.cs" />
+    <Compile Include="models\Player.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SquareToRadiusConverter.cs" />
-    <Compile Include="StartingSquare.cs" />
-    <Compile Include="StartingSquareVM.cs" />
-    <Compile Include="WindowToBoardConverter.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="PieceVM.cs" />
-    <Compile Include="Square.cs" />
-    <Compile Include="SquareVM.cs" />
+    <Compile Include="viewmodels\SettingsVM.cs" />
+    <Compile Include="views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\SquareToRadiusConverter.cs" />
+    <Compile Include="models\StartingSquare.cs" />
+    <Compile Include="viewmodels\StartingSquareVM.cs" />
+    <Compile Include="views\WindowToBoardConverter.cs" />
+    <Compile Include="models\Game.cs" />
+    <Compile Include="viewmodels\PieceVM.cs" />
+    <Compile Include="models\Square.cs" />
+    <Compile Include="viewmodels\SquareVM.cs" />
     <Page Include="ColorSchemeUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,9 +102,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Piece.cs" />
+    <Compile Include="models\Piece.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -156,5 +164,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

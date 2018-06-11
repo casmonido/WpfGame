@@ -4,10 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfGame"
+        xmlns:views="clr-namespace:WpfGame.views"
         mc:Ignorable="d"
         Title="The royal game of Ur" Height="500" Width="1000" MinHeight="250" MinWidth="500" 
         x:Name="ParentWindow">
     <Window.Resources>
+        <DataTemplate DataType="x:Type SettingsVM">
+            <views:SettingsView DataContext="{Binding}"/>
+        </DataTemplate>
         <local:WindowToBoardConverter x:Key="windowToBoard"/>
         <local:SquareToRadiusConverter x:Key="squareToRadius"/>
         <Style x:Key="ChangeOpacityOnMouseOverStyle" TargetType="{x:Type Ellipse}">

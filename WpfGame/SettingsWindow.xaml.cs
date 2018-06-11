@@ -26,6 +26,7 @@ namespace WpfGame
         public SettingsWindow()
         {
             InitializeComponent();
+            colorPicker.setSelected(BackColor, FrontColor);
         }
 
         public void _Accept(object sender, RoutedEventArgs e)

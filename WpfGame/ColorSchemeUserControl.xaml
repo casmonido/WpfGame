@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:WpfGame"
              mc:Ignorable="d" Height="71" Width="100">
     <StackPanel Margin="10">
-        <ComboBox HorizontalAlignment="Left" Width="80" Name="colorList" Height="35">
+        <ComboBox HorizontalAlignment="Left" Width="80" Name="colorList" Height="35"
+                  SelectedItem="{Binding selected}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
