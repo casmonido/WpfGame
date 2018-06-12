@@ -53,6 +53,8 @@ namespace WpfGame
                 MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
                 gameVM = new GameVM(app.createModel());
+            if (DataContext.GetType() == typeof(GameVM))
+                DataContext = gameVM;
         }
 
         public void _Exit(object sender, RoutedEventArgs e)

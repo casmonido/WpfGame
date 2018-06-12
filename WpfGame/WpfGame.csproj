@@ -56,7 +56,7 @@
     </ApplicationDefinition>
     <Compile Include="models\Board.cs" />
     <Compile Include="viewmodels\BoardVM.cs" />
-    <Compile Include="ColorScheme.cs" />
+    <Compile Include="viewmodels\ColorScheme.cs" />
     <Compile Include="views\ColorSchemeUserControl.xaml.cs">
       <DependentUpon>ColorSchemeUserControl.xaml</DependentUpon>
     </Compile>

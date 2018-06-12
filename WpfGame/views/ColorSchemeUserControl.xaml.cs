@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfGame.viewmodels;
 
 namespace WpfGame.views
 {
@@ -21,24 +22,56 @@ namespace WpfGame.views
     /// </summary>
     public partial class ColorSchemeUserControl : UserControl
     {
-        ObservableCollection<ColorScheme> colorSchemes = new ObservableCollection<ColorScheme>();
-        public ColorScheme Selected { get; set; }
+        public ObservableCollection<ColorScheme> ColorSchemes { get; set; }
+            = new ObservableCollection<ColorScheme>();
+        private ColorScheme selected;
+        public ColorScheme Selected
+        {
+            get
+            {
+                return selected;
+            }
+            set
+            {
+                if (!value.Equals(selected))
+                {
+                    selected = value;
+                    BackColor = selected.BackColor;
+                    FrontColor = selected.FrontColor;
+                }
+            }
+        }
+        private string backColor;
+        public string BackColor
+        {
+            get
+            {
+                return backColor;
+            }
+            set
+            {
+                if (value != backColor)
+                    backColor = value;
+            }
+        }
+        public string FrontColor { get; set; }
 
         public ColorSchemeUserControl()
         {
             InitializeComponent();
-            colorSchemes.Add(new ColorScheme("Aquamarine", "CornflowerBlue"));
+            ColorSchemes.Add(new ColorScheme("Aquamarine", "CornflowerBlue"));
             ColorScheme cs = new ColorScheme("Coral", "BlanchedAlmond");
-            colorSchemes.Add(cs);
+            ColorSchemes.Add(cs);
             Selected = cs;
-            colorList.ItemsSource = colorSchemes;
+            colorList.ItemsSource = ColorSchemes;
+            DataContext = this;
         }
 
         public void setSelected(string bcolor, string fcolor)
         {
             ColorScheme cs = new ColorScheme(bcolor, fcolor);
-            if (!colorSchemes.Contains(cs))
-                colorSchemes.Add(cs);
+            if (!ColorSchemes.Contains(cs))
+                ColorSchemes.Add(cs);
             Selected = cs;
         }
 
