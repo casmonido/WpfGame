@@ -11,10 +11,10 @@
         x:Name="ParentWindow">
     <Window.Resources>
         <DataTemplate x:Name="settingsVM" DataType="{x:Type viewmodels:SettingsVM}">
-            <views:SettingsView DataContext="{Binding}"/>
+            <views:SettingsView Content="{Binding}"/>
         </DataTemplate>
         <DataTemplate x:Name="gameVM" DataType="{x:Type viewmodels:GameVM}">
-            <views:GameView DataContext="{Binding}"/>
+            <views:GameView Content="{Binding}"/>
         </DataTemplate>
     </Window.Resources>
 

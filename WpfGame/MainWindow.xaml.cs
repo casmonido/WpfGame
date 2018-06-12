@@ -26,25 +26,26 @@ namespace WpfGame
     {
         private App app;
         private GameVM gameVM;
+        private SettingsVM setVM;
 
         public MainWindow(App ap)
         {
             app = ap;
             InitializeComponent();
             gameVM = new GameVM(app.createModel());
+            setVM = new SettingsVM();
             DataContext = gameVM;
+            setVM.PropertyChanged += (sender, e) =>
+            {
+                if (!e.PropertyName.Equals("BackColor"))
+                    return;
+                gameVM.BackColor = setVM.BackColor;
+            };
         }
 
         public void _SettingsView(object sender, RoutedEventArgs e)
         {
-            SettingsVM svm = new SettingsVM();
-            svm.PropertyChanged += (isender, ie) =>
-            {
-                if (!ie.PropertyName.Equals("BackColor"))
-                    return;
-                gameVM.BackColor = svm.BackColor;
-            };
-            DataContext = new SettingsVM();
+            DataContext = setVM;
         }
 
         public void _GameView(object sender, RoutedEventArgs e)

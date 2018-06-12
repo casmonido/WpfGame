@@ -17,7 +17,24 @@ namespace WpfGame.viewmodels
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        private string backColor = "Pink";
+        private ColorScheme selected;
+        public ColorScheme Selected
+        {
+            get
+            {
+                return selected;
+            }
+            set
+            {
+                if (!value.Equals(selected))
+                {
+                    selected = value;
+                    BackColor = selected.BackColor;
+                    FrontColor = selected.FrontColor;
+                }
+            }
+        }
+        private string backColor;
         public string BackColor
         {
             get
@@ -26,12 +43,29 @@ namespace WpfGame.viewmodels
             }
             set
             {
-                if (backColor != value)
+                if (value != backColor)
                 {
                     backColor = value;
                     NotifyPropertyChanged("BackColor");
                 }
             }
         }
+        private string frontColor;
+        public string FrontColor
+        {
+            get
+            {
+                return frontColor;
+            }
+            set
+            {
+                if (value != frontColor)
+                {
+                    frontColor = value;
+                    NotifyPropertyChanged("FrontColor");
+                }
+            }
+        }
+
     }
 }
