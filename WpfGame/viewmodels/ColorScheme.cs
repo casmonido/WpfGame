@@ -18,5 +18,12 @@ namespace WpfGame.viewmodels
         public ColorScheme()
         {
         }
+        new public bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+            ColorScheme c = (ColorScheme)obj;
+            return (c.BackColor == BackColor) && (FrontColor == c.FrontColor);
+        }
     }
 }
