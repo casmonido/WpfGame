@@ -73,10 +73,6 @@ namespace WpfGame.viewmodels
                 }
             }
         }
-        public void setColors(string backColor)
-        {
-            BackColor = backColor;
-        }
         public GameVM(Game g)
         {
             model = g;

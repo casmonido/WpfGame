@@ -41,6 +41,12 @@ namespace WpfGame
                     return;
                 gameVM.BackColor = setVM.BackColor;
             };
+            setVM.PropertyChanged += (sender, e) =>
+            {
+                if (!e.PropertyName.Equals("FrontColor"))
+                    return;
+                gameVM.DiceVM.FrontColor = setVM.FrontColor;
+            };
         }
 
         public void _SettingsView(object sender, RoutedEventArgs e)

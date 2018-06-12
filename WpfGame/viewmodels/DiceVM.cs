@@ -75,7 +75,7 @@ namespace WpfGame.viewmodels
             {
                 return frontColor;
             }
-            private set
+            set
             {
                 if (frontColor != value)
                 {
