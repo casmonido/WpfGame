@@ -17,7 +17,7 @@ namespace WpfGame.viewmodels
             {
                 return backColor;
             }
-            private set
+            set
             {
                 if (backColor != value)
                 {

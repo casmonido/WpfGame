@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +21,16 @@ namespace WpfGame.views
     /// <summary>
     /// Logika interakcji dla klasy ColorSchemeUserControl.xaml
     /// </summary>
-    public partial class ColorSchemeUserControl : UserControl
+    public partial class ColorSchemeUserControl : UserControl, INotifyPropertyChanged
     {
-        public ObservableCollection<ColorScheme> ColorSchemes { get; set; }
-            = new ObservableCollection<ColorScheme>();
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private ColorScheme selected;
         public ColorScheme Selected
         {
@@ -51,29 +58,33 @@ namespace WpfGame.views
             set
             {
                 if (value != backColor)
+                {
                     backColor = value;
+                    NotifyPropertyChanged("BackColor");
+                }
             }
         }
-        public string FrontColor { get; set; }
+        private string frontColor;
+        public string FrontColor
+        {
+            get
+            {
+                return frontColor;
+            }
+            set
+            {
+                if (value != frontColor)
+                {
+                    frontColor = value;
+                    NotifyPropertyChanged("FrontColor");
+                }
+            }
+        }
 
         public ColorSchemeUserControl()
         {
             InitializeComponent();
-            ColorSchemes.Add(new ColorScheme("Aquamarine", "CornflowerBlue"));
-            ColorScheme cs = new ColorScheme("Coral", "BlanchedAlmond");
-            ColorSchemes.Add(cs);
-            Selected = cs;
-            colorList.ItemsSource = ColorSchemes;
             DataContext = this;
         }
-
-        public void setSelected(string bcolor, string fcolor)
-        {
-            ColorScheme cs = new ColorScheme(bcolor, fcolor);
-            if (!ColorSchemes.Contains(cs))
-                ColorSchemes.Add(cs);
-            Selected = cs;
-        }
-
     }
 }

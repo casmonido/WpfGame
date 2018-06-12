@@ -8,7 +8,9 @@
              mc:Ignorable="d" Height="71" Width="100">
     <UserControl.Resources>
         <x:Array x:Key="ColorList" Type="viewmodels:ColorScheme">
-            <viewmodels:ColorScheme BackColor = "Red" FrontColor="Green" />
+            <viewmodels:ColorScheme BackColor="Red" FrontColor="Green" />
+            <viewmodels:ColorScheme BackColor="Aquamarine" FrontColor="CornflowerBlue" />
+            <viewmodels:ColorScheme BackColor="Coral" FrontColor="BlanchedAlmond" />
         </x:Array>
     </UserControl.Resources>
     <StackPanel Margin="10">
@@ -16,10 +18,7 @@
              
              ItemsSource="{StaticResource ColorList}" 
 
-
-            SelectedValuePath="FrontColor" 
-
-             SelectedItem="{Binding Path=BackColor, Mode=TwoWay}">
+             SelectedItem="{Binding Path=Selected, Mode=TwoWay}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>

@@ -37,6 +37,13 @@ namespace WpfGame
 
         public void _SettingsView(object sender, RoutedEventArgs e)
         {
+            SettingsVM svm = new SettingsVM();
+            svm.PropertyChanged += (isender, ie) =>
+            {
+                if (!ie.PropertyName.Equals("BackColor"))
+                    return;
+                gameVM.BackColor = svm.BackColor;
+            };
             DataContext = new SettingsVM();
         }
 
