@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace WpfGame
+namespace WpfGame.viewmodels
 {
     public class ExecuteAction : ICommand
     {

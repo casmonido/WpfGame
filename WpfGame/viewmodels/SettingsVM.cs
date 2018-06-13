@@ -34,7 +34,7 @@ namespace WpfGame.viewmodels
                 }
             }
         }
-        private string backColor;
+        private string backColor = "Pink";
         public string BackColor
         {
             get
@@ -50,7 +50,7 @@ namespace WpfGame.viewmodels
                 }
             }
         }
-        private string frontColor;
+        private string frontColor = "White";
         public string FrontColor
         {
             get

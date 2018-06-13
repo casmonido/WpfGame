@@ -5,23 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfGame.views"
              xmlns:viewmodels="clr-namespace:WpfGame.viewmodels"
-             mc:Ignorable="d" Height="71" Width="100">
+             mc:Ignorable="d" Height="71" Width="100" >
     <UserControl.Resources>
         <x:Array x:Key="ColorList" Type="viewmodels:ColorScheme">
-            <viewmodels:ColorScheme BackColor="Red" FrontColor="Green" />
+            <viewmodels:ColorScheme BackColor="DarkGoldenrod" FrontColor="Indigo" />
             <viewmodels:ColorScheme BackColor="Aquamarine" FrontColor="CornflowerBlue" />
             <viewmodels:ColorScheme BackColor="Coral" FrontColor="BlanchedAlmond" />
         </x:Array>
     </UserControl.Resources>
-    <StackPanel Margin="10">
-        <ComboBox HorizontalAlignment="Left" Width="80" Name="colorList" Height="35"
-             
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="40">
+        <ComboBox HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                  Background="Aqua"
+                  Width="80" Name="colorList" Height="35" 
              ItemsSource="{StaticResource ColorList}" 
-
              SelectedItem="{Binding Path=Selected, Mode=TwoWay}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>

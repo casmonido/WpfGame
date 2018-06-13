@@ -142,7 +142,7 @@
                 <Viewbox.LayoutTransform>
                     <ScaleTransform ScaleX="1" />
                 </Viewbox.LayoutTransform>
-                <TextBlock Text="{Binding WhoseTurnText}" Foreground="{Binding Textcolor}"
+                <TextBlock Text="{Binding WhoseTurnText}" Foreground="{Binding FrontColor}"
                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
             </Viewbox>
 
@@ -166,7 +166,8 @@
                     <Viewbox.LayoutTransform>
                         <ScaleTransform ScaleX="0.5" ScaleY="0.5" />
                     </Viewbox.LayoutTransform>
-                    <TextBlock Text="{Binding InfoWhatToDo}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    <TextBlock Text="{Binding InfoWhatToDo}" 
+                               HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 </Viewbox>
 
                 <ItemsControl x:Name="dice" ItemsSource="{Binding Dice}"

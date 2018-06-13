@@ -65,7 +65,7 @@
     <Compile Include="viewmodels\DiceVM.cs" />
     <Compile Include="models\Die.cs" />
     <Compile Include="viewmodels\DieVM.cs" />
-    <Compile Include="ExecuteAction.cs" />
+    <Compile Include="viewmodels\ExecuteAction.cs" />
     <Compile Include="viewmodels\GameVM.cs" />
     <Compile Include="models\Player.cs" />
     <Compile Include="viewmodels\SettingsVM.cs" />

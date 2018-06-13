@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -22,8 +23,16 @@ namespace WpfGame
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private App app;
         private GameVM gameVM;
         private SettingsVM setVM;
@@ -39,13 +48,13 @@ namespace WpfGame
             {
                 if (!e.PropertyName.Equals("BackColor"))
                     return;
-                gameVM.BackColor = setVM.BackColor;
+                BackColor = setVM.BackColor;
             };
             setVM.PropertyChanged += (sender, e) =>
             {
                 if (!e.PropertyName.Equals("FrontColor"))
                     return;
-                gameVM.DiceVM.FrontColor = setVM.FrontColor;
+                FrontColor = setVM.FrontColor;
             };
         }
 
@@ -79,6 +88,42 @@ namespace WpfGame
                 MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
                 System.Environment.Exit(1);
+        }
+
+        private string backColor = "Pink";
+        public string BackColor
+        {
+            get
+            {
+                return backColor;
+            }
+            set
+            {
+                if (backColor != value)
+                {
+                    backColor = value;
+                    gameVM.BackColor = setVM.BackColor;
+                    NotifyPropertyChanged("BackColor");
+                }
+            }
+        }
+        private string frontColor = "White";
+        public string FrontColor
+        {
+            get
+            {
+                return frontColor;
+            }
+            set
+            {
+                if (frontColor != value)
+                {
+                    frontColor = value;
+                    gameVM.FrontColor = setVM.FrontColor;
+                    gameVM.DiceVM.FrontColor = setVM.FrontColor;
+                    NotifyPropertyChanged("FrontColor");
+                }
+            }
         }
     }
 }

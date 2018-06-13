@@ -26,13 +26,28 @@ namespace WpfGame.viewmodels
                 }
             }
         }
+        private string frontColor = "White";
+        public string FrontColor
+        {
+            get
+            {
+                return frontColor;
+            }
+            set
+            {
+                if (frontColor != value)
+                {
+                    frontColor = value;
+                    NotifyPropertyChanged("FrontColor");
+                }
+            }
+        }
         private static string YOUR_TURN = "Your turn";
         private static string OTHERS_TURN = "Computer's turn";
         private static string YOU_WON = "You won";
         private static string OTHER_WON = "Computer won!";
         public BoardVM BoardVM { get; private set; }
         public DiceVM DiceVM { get; private set; }
-        public event PropertyChangedEventHandler PropertyChanged;
         private string textolor = "White";
         public string Textcolor
         {
@@ -49,6 +64,7 @@ namespace WpfGame.viewmodels
                 }
             }
         }
+        public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName = "")
         {
             if (PropertyChanged != null)

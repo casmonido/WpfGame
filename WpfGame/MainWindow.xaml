@@ -32,7 +32,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <DockPanel Grid.Row="0" Grid.Column="0" Background="Gray" >
+        <DockPanel Grid.Row="0" Grid.Column="0" Background="{Binding FrontColor}" >
             <StackPanel>
                 <Button Click="_SettingsView">Settings view</Button>
                 <Button Click="_GameView">Game view</Button>
