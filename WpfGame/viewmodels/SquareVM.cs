@@ -21,7 +21,10 @@ namespace WpfGame.viewmodels
             model = s;
             X = s.X;
             Y = s.Y;
-            ImgSrc = s.ImgSrc;
+            if (s.ImgNr < 0)
+                ImgSrc = "Transparent";
+            else
+                ImgSrc = "/img/square" + s.ImgNr + ".png";
         }
     }
 }

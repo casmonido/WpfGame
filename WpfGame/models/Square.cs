@@ -10,7 +10,7 @@ namespace WpfGame.models
     {
         public int X { get; private set; }
         public int Y { get; private set; }
-        public string ImgSrc { get; private set; }
+        public int ImgNr { get; private set; }
         public event Action<Whose, Square> CommandLeave;
         private Whose whose = Whose.nobodys;
 
@@ -31,11 +31,11 @@ namespace WpfGame.models
             whose = Whose.nobodys;
         }
 
-        public Square(int tx, int ty, String img)
+        public Square(int tx, int ty, int imgNr)
         {
             X = tx;
             Y = ty;
-            ImgSrc = img;
+            ImgNr = imgNr;
         }
     }
 }

@@ -52,7 +52,7 @@ namespace WpfGame.models
             Pieces = new ObservableCollection<Piece>();
             int tmp = who == Whose.computers ? 4 : 0;
             for (int i = 0; i < NUM_PIECES; i++)
-                Pieces.Add(new Piece(who, boardModel, new Square(i+1, tmp, "Transparent"), this));
+                Pieces.Add(new Piece(who, boardModel, new Square(i+1, tmp, -1), this));
             if (who == Whose.computers)
                 game.PropertyChanged += (sender, e) =>
                 {

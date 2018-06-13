@@ -19,15 +19,15 @@ namespace WpfGame.models
                            4, 5, 1, 5};
             for (int j = 0; j < 3; j++)
                 for (int i = 0; i < 4; i++)
-                    squares.Add(new Square(i, j+1, "/img/square" + srcs[i+j*4] + ".png"));
+                    squares.Add(new Square(i, j+1, srcs[i+j*4]));
             int[] srcs1 = {4, 2,
                            5, 1,
                            4, 2};
             for (int j = 0; j < 3; j++)
                 for (int i = 0; i < 2; i++)
-                    squares.Add(new Square(i + 6, j + 1, "/img/square" + srcs1[i + j * 2] + ".png"));
-            squares.Add(new Square(4, 2, "/img/square1.png"));
-            squares.Add(new Square(5, 2, "/img/square6.png"));
+                    squares.Add(new Square(i + 6, j + 1, srcs1[i + j * 2]));
+            squares.Add(new Square(4, 2, 1));
+            squares.Add(new Square(5, 2, 6));
             playersPath[0] = squares[3];
             playersPath[1] = squares[2];
             playersPath[2] = squares[1];
