@@ -38,6 +38,7 @@ namespace WpfGame.viewmodels
                 if (frontColor != value)
                 {
                     frontColor = value;
+                    DiceVM.FrontColor = FrontColor;
                     NotifyPropertyChanged("FrontColor");
                 }
             }

@@ -76,6 +76,8 @@ namespace WpfGame
                 MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
                 gameVM = new GameVM(app.createModel());
+            gameVM.FrontColor = FrontColor;
+            gameVM.BackColor = BackColor;
             if (DataContext.GetType() == typeof(GameVM))
                 DataContext = gameVM;
         }
@@ -120,7 +122,6 @@ namespace WpfGame
                 {
                     frontColor = value;
                     gameVM.FrontColor = setVM.FrontColor;
-                    gameVM.DiceVM.FrontColor = setVM.FrontColor;
                     NotifyPropertyChanged("FrontColor");
                 }
             }
