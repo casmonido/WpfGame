@@ -74,7 +74,7 @@ namespace WpfGame.viewmodels
             }
         }
         private Game model;
-        private string whoseTurnText = YOUR_TURN;
+        private string whoseTurnText = GameVM.YOUR_TURN;
         public string WhoseTurnText
         {
             get
@@ -83,7 +83,7 @@ namespace WpfGame.viewmodels
             }
             set
             {
-                if (whoseTurnText.Equals(value))
+                if (!whoseTurnText.Equals(value))
                 {
                     whoseTurnText = value;
                     NotifyPropertyChanged("WhoseTurnText");
