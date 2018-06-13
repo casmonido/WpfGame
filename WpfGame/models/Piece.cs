@@ -31,6 +31,7 @@ namespace WpfGame.models
         {
             if (w != Owner || Location != s)
                 return;
+            Location.leave(this);
             PathCrossed = 0;
             Location = board.getNextLocation(this, PathCrossed);
         }

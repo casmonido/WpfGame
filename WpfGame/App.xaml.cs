@@ -24,7 +24,10 @@ namespace WpfGame
 
         public Game createModel()
         {
-            return new Game();
+            List<IDie> dieList = new List<IDie>();
+            for (int i = 0; i < Dice.DIE_NUM; ++i)
+                dieList.Add(new Die());
+            return new Game(dieList);
         }
     }
 }

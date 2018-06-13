@@ -71,14 +71,11 @@ namespace WpfGame.models
         }
 
     
-        public Game()
+        public Game(List<IDie> dieList)
         {
             Board = new Board();
             Player = new Player(Whose.players, Board, this);
             Computer = new Player(Whose.computers, Board, this);
-            List<IDie> dieList = new List<IDie>();
-            for (int i = 0; i<Dice.DIE_NUM; ++i)
-                dieList.Add(new Die());
             Dice = new Dice(this, dieList);
         }
 

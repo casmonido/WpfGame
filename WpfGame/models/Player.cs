@@ -13,7 +13,7 @@ namespace WpfGame.models
         public static int NUM_PIECES = 6;
         public ObservableCollection<Piece> Pieces { get; private set; }
         private Game game;
-        private Whose who;
+        public Whose Who { get; private set; }
         private int score = 0;
         private Random rand = new Random();
 
@@ -48,12 +48,12 @@ namespace WpfGame.models
         public Player(Whose w, Board boardModel, Game g)
         {
             game = g;
-            who = w;
+            Who = w;
             Pieces = new ObservableCollection<Piece>();
-            int tmp = who == Whose.computers ? 4 : 0;
+            int tmp = Who == Whose.computers ? 4 : 0;
             for (int i = 0; i < NUM_PIECES; i++)
-                Pieces.Add(new Piece(who, boardModel, new Square(i+1, tmp, -1), this));
-            if (who == Whose.computers)
+                Pieces.Add(new Piece(Who, boardModel, new Square(i+1, tmp, -1), this));
+            if (Who == Whose.computers)
                 game.PropertyChanged += (sender, e) =>
                 {
                     if (!e.PropertyName.Equals("Turn") ||
@@ -67,7 +67,7 @@ namespace WpfGame.models
 
         public OccupyResponses move(Piece p)
         {
-            if (game.Turn != who || !game.Rolled || game.Dice.RolledNum == 0)
+            if (game.Turn != Who || !game.Rolled || game.Dice.RolledNum == 0)
                 return OccupyResponses.NOT_OK;
             OccupyResponses response = p.move(game.Dice.RolledNum);
             if (response != OccupyResponses.OK)
@@ -77,7 +77,7 @@ namespace WpfGame.models
                 p.WholePathCrossed = true;
                 score++;
                 if (score == NUM_PIECES)
-                    game.setGameWon(this.who);
+                    game.setGameWon(this.Who);
             }
             game.changeTurn();
             return response;

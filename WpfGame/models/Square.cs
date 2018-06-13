@@ -12,23 +12,23 @@ namespace WpfGame.models
         public int Y { get; private set; }
         public int ImgNr { get; private set; }
         public event Action<Whose, Square> CommandLeave;
-        private Whose whose = Whose.nobodys;
+        public Whose Whose { get; private set; } = Whose.nobodys;
 
         public OccupyResponses tryAndOccupy(Piece p)
         {
-            if (whose != Whose.nobodys && whose == p.Owner)
+            if (Whose != Whose.nobodys && Whose == p.Owner)
                 return OccupyResponses.NOT_OK;
             if (CommandLeave != null)
-                CommandLeave(whose, this);
+                CommandLeave(Whose, this);
             CommandLeave += p.HandleCommandLeave;
-            whose = p.Owner;
+            Whose = p.Owner;
             return OccupyResponses.OK;
         }
 
         public void leave(Piece p)
         {
             CommandLeave -= p.HandleCommandLeave;
-            whose = Whose.nobodys;
+            Whose = Whose.nobodys;
         }
 
         public Square(int tx, int ty, int imgNr)
