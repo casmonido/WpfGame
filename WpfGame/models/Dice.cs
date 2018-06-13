@@ -10,17 +10,16 @@ namespace WpfGame.models
 {
     public class Dice: Die
     {
-        private static int DIE_NUM = 4;
+        public static int DIE_NUM = 4;
         private Game game;
-        public List<Die> dice = new List<Die>();
+        public List<IDie> dice;
 
         private DispatcherTimer timer = new DispatcherTimer();
 
-        public Dice(Game g)
+        public Dice(Game g, List<IDie> d)
         {
             game = g;
-            for (int i = 0; i < DIE_NUM; ++i)
-                dice.Add(new Die());
+            dice = d;
         }
 
         new public int Roll()

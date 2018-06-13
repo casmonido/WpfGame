@@ -8,10 +8,10 @@ namespace UnitTestProject
     public class DiceTest
     {
         [TestMethod]
-        public void TestRoll_RolledZero()
+        public void TestRoll_RollIfNotRolled()
         {
             Game g = new Game();
-            Dice d = new Dice(g);
+            Dice d = g.Dice;
             for (int i = 0; i < 10; ++i)
                 Assert.AreEqual(d.Roll(), d.Roll());
             int same = 0;
@@ -26,6 +26,25 @@ namespace UnitTestProject
             }
             Assert.AreNotEqual(same, 0);
         }
-  
+
+        [TestMethod]
+        public void TestRoll_RolledZero()
+        {
+            Game g = new Game();
+            Dice d = g.Dice;
+            for (int i = 0; i < 10; ++i)
+                Assert.AreEqual(d.Roll(), d.Roll());
+            int same = 0;
+            for (int i = 0; i < 10; ++i)
+            {
+                g.Rolled = false;
+                int res1 = d.Roll();
+                g.Rolled = false;
+                int res2 = d.Roll();
+                if (res1 == res2)
+                    same++;
+            }
+            Assert.AreNotEqual(same, 0);
+        }
     }
 }

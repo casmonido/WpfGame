@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace WpfGame.models
 {
-    public class Die : INotifyPropertyChanged
+    public class Die : IDie
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        override public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName = "")
         {
             if (PropertyChanged != null)
@@ -18,7 +18,7 @@ namespace WpfGame.models
             }
         }
         private int rolledNum = 0;
-        public int RolledNum
+        override public int RolledNum
         {
             get
             {
@@ -35,7 +35,7 @@ namespace WpfGame.models
         }
         private Random random = new Random(Guid.NewGuid().GetHashCode());
 
-        public int Roll()
+        public override int Roll()
         {
             RolledNum = random.Next(0, 2);
             return RolledNum;

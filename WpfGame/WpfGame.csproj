@@ -55,6 +55,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="models\Board.cs" />
+    <Compile Include="models\IDie.cs" />
     <Compile Include="viewmodels\BoardVM.cs" />
     <Compile Include="viewmodels\ColorScheme.cs" />
     <Compile Include="views\ColorSchemeUserControl.xaml.cs">

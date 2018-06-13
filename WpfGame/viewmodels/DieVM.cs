@@ -37,8 +37,8 @@ namespace WpfGame.viewmodels
             }
         }
         public int Lp { get; private set; }
-        private Die model;
-        public DieVM(Die d, int lp)
+        private IDie model;
+        public DieVM(IDie d, int lp)
         {
             model = d;
             d.PropertyChanged += (sender, e) =>
